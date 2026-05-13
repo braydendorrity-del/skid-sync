@@ -9,775 +9,290 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --lime:       #39FF14;
-    --lime-hi:    #7aff5c;
-    --lime-dim:   rgba(57,255,20,0.18);
-    --lime-soft:  rgba(57,255,20,0.06);
-    --lime-glow:  rgba(57,255,20,0.35);
-    --black:      #080808;
-    --bg:         #080808;
-    --bg2:        #0e0e0e;
-    --card:       #111111;
-    --card2:      #161616;
-    --line:       #1e1e1e;
-    --line2:      #272727;
-    --muted:      #595959;
-    --mid:        #8a8a8a;
-    --text:       #f0f0f0;
-    --pad:        clamp(20px, 4vw, 60px);
-    --maxw:       1380px;
-    --r:          10px;
+    --lime:      #39FF14;
+    --lime-hi:   #7aff5c;
+    --lime-dim:  rgba(57,255,20,0.18);
+    --lime-soft: rgba(57,255,20,0.05);
+    --lime-glow: rgba(57,255,20,0.35);
+    --black:     #0D0D0D;
+    --bg:        #0D0D0D;
+    --bg2:       #111111;
+    --charcoal:  #1A1A1A;
+    --card:      #1A1A1A;
+    --line:      #252525;
+    --line2:     #2a2a2a;
+    --gray3:     #666666;
+    --gray4:     #A0A0A0;
+    --text:      #FFFFFF;
+    --muted:     #A0A0A0;
+    --pad:       clamp(20px, 3vw, 48px);
+    --maxw:      1440px;
   }
-
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   html, body { background: var(--bg); color: var(--text); overflow-x: hidden; }
-  body {
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 16px;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-  }
+  body { font-family: 'Inter', system-ui, sans-serif; font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
   a { color: inherit; text-decoration: none; }
   img { display: block; max-width: 100%; }
   button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
-
-  .bebas { font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.02em; }
-  .mono { font-family: 'Inter', sans-serif; }
-  .label {
-    font-family: 'Inter', sans-serif;
-    font-size: 10px; font-weight: 700; letter-spacing: 0.22em;
-    color: var(--lime); text-transform: uppercase;
-  }
   .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--pad); }
 
-  /* ======== NAV ======== */
-  .nav {
-    position: sticky; top: 0; z-index: 100;
-    background: rgba(8,8,8,0.85);
-    backdrop-filter: blur(20px) saturate(150%);
-    -webkit-backdrop-filter: blur(20px) saturate(150%);
-    border-bottom: 1px solid var(--line);
-  }
-  .nav-inner {
-    display: grid; grid-template-columns: auto 1fr auto;
-    align-items: center; height: 68px; gap: 32px;
-  }
-  .logo { display: inline-flex; align-items: center; gap: 10px; }
-  .logo-mark {
-    width: 36px; height: 36px;
-    background: var(--lime); border-radius: 7px;
-    display: grid; place-items: center;
-    font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500;
-    color: var(--black); letter-spacing: -0.03em;
-  }
-  .logo-name {
-    font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 0.18em;
-    text-transform: uppercase; color: #fff;
-  }
-  .logo-name .s1 { color: #fff; }
-  .logo-name .s2 { color: var(--lime); }
+  /* NAV */
+  .nav { position: sticky; top: 0; z-index: 100; background: rgba(13,13,13,0.92); backdrop-filter: blur(18px) saturate(140%); -webkit-backdrop-filter: blur(18px) saturate(140%); border-bottom: 1px solid var(--line); }
+  .nav-inner { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; height: 72px; gap: 24px; }
+  .logo { display: inline-flex; align-items: center; gap: 12px; }
+  .logo img { height: 44px; width: auto; }
+  .nav-links { display: flex; gap: 30px; justify-content: center; }
+  .nav-links a { font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #ddd; padding: 10px 0; border-bottom: 1px solid transparent; transition: all .15s; }
+  .nav-links a:hover { color: var(--lime); }
+  .nav-links a.active { color: var(--lime); border-bottom-color: var(--lime); }
+  .nav-right { display: flex; gap: 10px; justify-content: flex-end; align-items: center; }
+  .icon-btn { width: 36px; height: 36px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 6px; color: #ccc; transition: all .15s; }
+  .icon-btn:hover { border-color: var(--lime); color: var(--lime); }
+  .nav-cta { display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border: 1px solid var(--line); border-radius: 6px; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; transition: all .15s; }
+  .nav-cta:hover { border-color: var(--lime); color: var(--lime); }
 
-  .nav-center { display: flex; gap: 0; justify-content: center; }
-  .nav-center a {
-    font-family: 'Inter', sans-serif;
-    font-size: 11px; font-weight: 500; letter-spacing: 0.15em;
-    text-transform: uppercase; color: var(--mid);
-    padding: 8px 16px; transition: color .15s;
-  }
-  .nav-center a:hover, .nav-center a.active { color: var(--lime); }
-
-  .nav-right { display: flex; gap: 8px; align-items: center; }
-  .nav-icon {
-    width: 34px; height: 34px; display: grid; place-items: center;
-    border: 1px solid var(--line); border-radius: 6px; color: var(--mid);
-    transition: all .15s;
-  }
-  .nav-icon:hover { border-color: var(--lime); color: var(--lime); }
-  .nav-cta {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 8px 16px; background: var(--lime); border-radius: 6px;
-    font-family: 'Inter', sans-serif;
-    font-size: 11px; font-weight: 500; letter-spacing: 0.15em;
-    text-transform: uppercase; color: var(--black);
-    transition: background .15s, box-shadow .15s;
-  }
-  .nav-cta:hover { background: var(--lime-hi); box-shadow: 0 6px 20px -6px var(--lime-glow); }
-
-  /* ======== BUTTONS ======== */
-  .btn {
-    display: inline-flex; align-items: center; gap: 10px;
-    padding: 14px 26px; font-family: 'Inter', sans-serif;
-    font-weight: 500; font-size: 11px; letter-spacing: 0.18em;
-    text-transform: uppercase; border: 1px solid transparent;
-    border-radius: var(--r); cursor: pointer; transition: all .2s;
-  }
+  /* BUTTONS */
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 16px 28px; font-weight: 700; font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; border: 1px solid transparent; border-radius: 6px; cursor: pointer; transition: all .18s; }
   .btn-primary { background: var(--lime); color: var(--black); }
-  .btn-primary:hover { background: var(--lime-hi); box-shadow: 0 12px 32px -8px var(--lime-glow); transform: translateY(-1px); }
-  .btn-outline { border-color: var(--lime-dim); color: var(--lime); background: var(--lime-soft); }
-  .btn-outline:hover { border-color: var(--lime); background: rgba(57,255,20,0.1); }
-  .btn-ghost { border-color: var(--line2); color: var(--mid); }
-  .btn-ghost:hover { border-color: var(--mid); color: var(--text); }
+  .btn-primary:hover { background: var(--lime-hi); transform: translateY(-1px); box-shadow: 0 10px 30px -10px var(--lime-glow); }
+  .btn-outline { background: transparent; border-color: var(--lime); color: var(--lime); }
+  .btn-outline:hover { background: var(--lime-soft); }
 
-  /* ======== HERO ======== */
-  .hero {
-    position: relative;
-    min-height: calc(100dvh - 68px);
-    display: grid;
-    grid-template-columns: 55% 1fr;
-    border-bottom: 1px solid var(--line);
-    overflow: hidden;
-  }
-
-  /* large grain texture */
-  .hero::after {
-    content: ''; position: absolute; inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none; z-index: 0; opacity: 0.4;
-  }
-
-  .hero-left {
-    position: relative; z-index: 2;
-    padding: 72px var(--pad) 56px;
-    display: flex; flex-direction: column; justify-content: space-between; gap: 48px;
-    border-right: 1px solid var(--line);
-  }
-
-  .hero-eyebrow {
-    display: inline-flex; align-items: center; gap: 12px;
-  }
-  .hero-eyebrow .led {
-    width: 7px; height: 7px; border-radius: 50%;
-    background: var(--lime); box-shadow: 0 0 10px var(--lime);
-    animation: blink 2.4s ease-in-out infinite;
-  }
+  /* HERO */
+  .hero { position: relative; min-height: calc(100dvh - 72px); display: grid; grid-template-columns: 1.05fr 1fr; border-bottom: 1px solid var(--line); overflow: hidden; }
+  .hero-left { padding: 80px var(--pad) 60px; display: flex; flex-direction: column; justify-content: space-between; gap: 50px; position: relative; border-right: 1px solid var(--line); }
+  .hero-tag { display: inline-flex; align-items: center; gap: 12px; }
+  .hero-tag .led { width: 9px; height: 9px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 12px var(--lime); animation: blink 2.4s ease-in-out infinite; }
+  .hero-tag span { font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); }
   @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.25} }
-
-  h1.hero-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(64px, 10vw, 148px);
-    font-weight: 400;
-    line-height: 0.88;
-    letter-spacing: 0.015em;
-    margin-top: 24px;
-  }
+  h1.hero-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(64px, 10vw, 148px); line-height: 0.88; letter-spacing: 0.015em; margin-top: 28px; }
   h1.hero-title .accent { color: var(--lime); }
-  h1.hero-title .alt { color: var(--mid); }
+  .hero-sub { max-width: 48ch; color: var(--gray4); font-size: 17px; margin-top: 28px; line-height: 1.65; }
+  .hero-cta { display: flex; gap: 12px; margin-top: 36px; flex-wrap: wrap; }
+  .hero-meta { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); padding-top: 24px; }
+  .hero-meta .cell { padding-right: 20px; }
+  .hero-meta .k { font-size: 10px; font-weight: 700; color: var(--gray3); letter-spacing: 0.22em; text-transform: uppercase; }
+  .hero-meta .v { font-family: 'Bebas Neue', sans-serif; font-size: 32px; margin-top: 6px; letter-spacing: 0.04em; }
+  .hero-meta .v .unit { color: var(--gray3); font-size: 13px; margin-left: 4px; font-family: 'Inter', sans-serif; }
 
-  .hero-sub {
-    max-width: 46ch; color: var(--mid); font-size: 16px;
-    font-family: 'Inter', sans-serif; line-height: 1.75; margin-top: 28px;
-  }
-  .hero-cta { display: flex; gap: 10px; margin-top: 32px; flex-wrap: wrap; }
+  .hero-right { position: relative; background: var(--black); overflow: hidden; }
+  .stage-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(57,255,20,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(57,255,20,0.05) 1px, transparent 1px); background-size: 44px 44px; }
+  .stage-glow { position: absolute; inset: 0; background: radial-gradient(ellipse at 55% 45%, rgba(57,255,20,0.14), transparent 55%); }
 
-  .hero-stats {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    border-top: 1px solid var(--line); padding-top: 24px; gap: 0;
-  }
-  .stat-cell { padding-right: 20px; }
-  .stat-cell .k {
-    font-family: 'Inter', sans-serif; font-size: 9px; font-weight: 500;
-    color: var(--muted); letter-spacing: 0.25em; text-transform: uppercase;
-  }
-  .stat-cell .v {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 32px; font-weight: 400; letter-spacing: 0.04em;
-    margin-top: 4px; line-height: 1;
-  }
-  .stat-cell .v .u {
-    font-size: 12px; font-weight: 400; color: var(--muted);
-    font-family: 'Inter', sans-serif; letter-spacing: 0.05em; margin-left: 4px;
-  }
-
-  /* hero right */
-  .hero-right {
-    position: relative; background: var(--black); overflow: hidden;
-  }
-  .stage-grid {
-    position: absolute; inset: 0;
-    background-image:
-      linear-gradient(rgba(57,255,20,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(57,255,20,0.04) 1px, transparent 1px);
-    background-size: 48px 48px;
-  }
-  .stage-radial {
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse at 50% 50%, rgba(57,255,20,0.12), transparent 60%);
-  }
-  .orbit {
-    position: absolute; left: 50%; top: 50%;
-    transform: translate(-50%,-50%);
-    border-radius: 50%; border: 1px solid;
-    pointer-events: none; animation: spin linear infinite;
-  }
-  .orbit-1 { width: 340px; height: 340px; border-color: rgba(57,255,20,0.12); animation-duration: 30s; }
-  .orbit-2 { width: 460px; height: 460px; border-color: rgba(57,255,20,0.07); animation-duration: 50s; animation-direction: reverse; }
-  .orbit-3 { width: 600px; height: 600px; border-color: rgba(57,255,20,0.03); animation-duration: 80s; }
+  .orbit { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); border-radius: 50%; border: 1px solid; pointer-events: none; animation: spin linear infinite; }
+  .orbit-1 { width: 360px; height: 360px; border-color: rgba(57,255,20,0.12); animation-duration: 30s; }
+  .orbit-2 { width: 480px; height: 480px; border-color: rgba(57,255,20,0.07); animation-duration: 50s; animation-direction: reverse; }
+  .orbit-3 { width: 620px; height: 620px; border-color: rgba(57,255,20,0.03); animation-duration: 80s; }
   @keyframes spin { to { transform: translate(-50%,-50%) rotate(360deg); } }
+  .orbit-dot { position: absolute; top: -4px; left: 50%; width: 8px; height: 8px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 10px var(--lime); transform: translateX(-50%); }
 
-  .orbit-dot {
-    position: absolute; top: -4px; left: 50%;
-    width: 8px; height: 8px; border-radius: 50%;
-    background: var(--lime); box-shadow: 0 0 12px var(--lime);
-    transform: translateX(-50%);
-  }
+  .hero-photo { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); width: min(90%, 720px); aspect-ratio: 4/3; z-index: 4; display: grid; place-items: center; transition: transform .1s ease-out; }
+  .hero-photo img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 30px 50px rgba(0,0,0,0.8)) drop-shadow(0 0 40px rgba(57,255,20,0.22)); }
+  .ph-label { position: absolute; left: 0; bottom: -8px; font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 0.16em; color: var(--lime); text-shadow: 0 0 18px rgba(57,255,20,0.55); z-index: 2; }
+  .ph-sn { position: absolute; right: 0; top: -4px; font-size: 10px; letter-spacing: 0.3em; color: rgba(255,255,255,0.55); z-index: 2; }
+  .hero-callouts { position: absolute; inset: 0; pointer-events: none; z-index: 5; }
+  .callout { position: absolute; font-size: 10px; font-weight: 700; color: var(--gray4); letter-spacing: 0.18em; text-transform: uppercase; display: flex; align-items: center; gap: 10px; }
+  .callout .line { width: 44px; height: 1px; background: var(--lime); }
+  .callout.c1 { top: 8%; left: 2%; }
+  .callout.c2 { bottom: 28%; right: 2%; flex-direction: row-reverse; }
+  .callout.c3 { bottom: 8%; left: 2%; }
 
-  .product-stage {
-    position: absolute; left: 50%; top: 50%;
-    transform: translate(-50%, -52%);
-    z-index: 5; width: 260px; height: 260px;
-  }
-  .product-box {
-    width: 200px; height: 200px;
-    background: linear-gradient(140deg, #1e1e1e 0%, #0e0e0e 100%);
-    border: 1.5px solid #2a2a2a;
-    border-radius: 16px; position: absolute;
-    left: 30px; top: 30px;
-    box-shadow:
-      0 0 60px rgba(57,255,20,0.15),
-      0 40px 80px rgba(0,0,0,0.7),
-      inset 0 1px 0 rgba(255,255,255,0.04);
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center; gap: 18px;
-  }
-  .product-box .sku {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 52px; font-weight: 400; color: var(--lime);
-    letter-spacing: 0.08em;
-    text-shadow: 0 0 20px rgba(57,255,20,0.45);
-    line-height: 1;
-  }
-  .box-leds { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; }
-  .box-led {
-    width: 9px; height: 9px; border-radius: 50%;
-    background: var(--lime); box-shadow: 0 0 8px var(--lime);
-  }
-  .box-led.off { background: #2a2a2a; box-shadow: none; }
-  .box-side {
-    position: absolute; width: 36px; height: 200px;
-    background: linear-gradient(90deg, #141414, #0a0a0a);
-    left: 230px; top: 38px;
-    border-radius: 0 10px 10px 0;
-    border: 1px solid #1e1e1e; border-left: none;
-    transform: skewY(10deg);
-  }
-  .box-btm {
-    position: absolute; width: 200px; height: 34px;
-    background: linear-gradient(180deg, #141414, #0a0a0a);
-    left: 38px; top: 230px;
-    border-radius: 0 0 10px 10px;
-    border: 1px solid #1e1e1e; border-top: none;
-    transform: skewX(10deg);
-  }
-  .box-brand {
-    position: absolute; top: 10px; left: 12px;
-    font-family: 'Inter', sans-serif; font-size: 9px;
-    letter-spacing: 0.25em; color: #333; text-transform: uppercase;
-  }
+  /* SECTIONS */
+  section { padding: 120px 0; border-bottom: 1px solid var(--line); position: relative; }
+  .section-head { display: grid; grid-template-columns: 1fr 1.6fr; gap: 60px; align-items: end; margin-bottom: 64px; }
+  .section-head h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(44px, 6vw, 88px); line-height: 0.92; letter-spacing: 0.02em; }
+  .section-head h2 .accent { color: var(--lime); }
+  .section-head .lede { color: var(--gray4); max-width: 58ch; font-size: 17px; line-height: 1.7; }
+  .section-num { font-size: 10px; font-weight: 700; color: var(--gray3); letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 12px; }
 
-  .hero-photo {
-    position: absolute; inset: 0; z-index: 4;
-    display: grid; place-items: center;
-    padding: 10%;
-  }
-  .hero-photo img {
-    width: 100%; height: 100%; object-fit: contain;
-    filter: drop-shadow(0 40px 60px rgba(0,0,0,0.85)) drop-shadow(0 0 40px rgba(57,255,20,0.2));
-  }
-  .photo-label {
-    position: absolute; left: 20px; bottom: 20px; z-index: 6;
-    font-family: 'Inter', sans-serif; font-size: 10px;
-    letter-spacing: 0.22em; color: rgba(57,255,20,0.7);
-    text-transform: uppercase;
-  }
-  .photo-sn {
-    position: absolute; right: 20px; top: 20px; z-index: 6;
-    font-family: 'Inter', sans-serif; font-size: 9px;
-    letter-spacing: 0.25em; color: rgba(255,255,255,0.3);
-    text-transform: uppercase;
-  }
-
-  .hero-callouts { position: absolute; inset: 0; z-index: 7; pointer-events: none; }
-  .callout {
-    position: absolute; display: flex; align-items: center;
-    gap: 10px; font-family: 'Inter', sans-serif;
-    font-size: 9px; letter-spacing: 0.2em;
-    color: rgba(255,255,255,0.4); text-transform: uppercase;
-  }
-  .callout-line { width: 36px; height: 1px; background: var(--lime); opacity: 0.5; }
-  .callout.c1 { top: 22%; left: 6%; }
-  .callout.c2 { bottom: 34%; right: 6%; flex-direction: row-reverse; }
-  .callout.c3 { bottom: 14%; left: 8%; }
-
-  /* ======== SECTIONS ======== */
-  section { padding: 110px 0; border-bottom: 1px solid var(--line); position: relative; }
-
-  .sec-header {
-    display: grid; grid-template-columns: 1fr 1.4fr;
-    gap: 60px; align-items: end; margin-bottom: 60px;
-  }
-  .sec-num {
-    font-family: 'Inter', sans-serif; font-size: 9px;
-    font-weight: 500; color: var(--muted); letter-spacing: 0.28em;
-    text-transform: uppercase; margin-bottom: 10px;
-  }
-  h2.sec-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(44px, 6vw, 88px);
-    font-weight: 400; line-height: 0.92;
-    letter-spacing: 0.02em;
-  }
-  h2.sec-title .accent { color: var(--lime); }
-  h2.sec-title .alt {
-    
-    font-weight: 400; font-style: italic;
-    color: var(--mid); letter-spacing: -0.01em;
-  }
-  .sec-lede {
-    font-family: 'Inter', sans-serif; font-size: 14px;
-    color: var(--mid); line-height: 1.8; max-width: 52ch;
-  }
-
-  /* ======== PROBLEM / SOLUTION ======== */
+  /* PROBLEM/SOLUTION */
   #why { background: var(--black); }
-  .ps {
-    display: grid; grid-template-columns: 1fr 1fr;
-    border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
-  }
-  .ps-col { padding: 48px 44px; position: relative; }
-  .ps-col-a { border-right: 1px solid var(--line); }
-  .ps-badge {
-    display: inline-block; padding: 4px 10px;
-    font-family: 'Inter', sans-serif; font-size: 9px;
-    letter-spacing: 0.22em; text-transform: uppercase;
-    border-radius: 4px; margin-bottom: 18px;
-  }
-  .ps-badge-a { background: rgba(255,255,255,0.03); color: var(--muted); border: 1px solid var(--line); }
-  .ps-badge-b { background: var(--lime-soft); color: var(--lime); border: 1px solid var(--lime-dim); }
-  .ps-col h3 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 44px; font-weight: 400; line-height: 1;
-    letter-spacing: 0.02em; margin-bottom: 18px;
-  }
-  .ps-col-a h3 { color: var(--muted); }
-  .ps-col-b h3 .accent { color: var(--lime); }
-  .ps-col p { font-family: 'Inter', sans-serif; font-size: 13px; color: var(--mid); line-height: 1.75; max-width: 40ch; }
-  .ps-list { list-style: none; margin-top: 24px; }
-  .ps-list li {
-    display: flex; align-items: center; gap: 12px;
-    padding: 12px 0; border-bottom: 1px solid var(--line);
-    font-family: 'Inter', sans-serif; font-size: 12px; color: #ccc;
-    letter-spacing: 0.02em;
-  }
-  .ps-list li:first-child { border-top: 1px solid var(--line); }
-  .ps-col-a .ps-list li .mark { color: var(--muted); width: 18px; }
-  .ps-col-b .ps-list li .mark { color: var(--lime); width: 18px; font-weight: 700; }
+  .ps { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--charcoal); }
+  .ps .col { padding: 50px 44px; position: relative; }
+  .ps .col-a { border-right: 1px solid var(--line); }
+  .ps .tag { position: absolute; top: 28px; right: 44px; font-size: 10px; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; }
+  .ps .col-a .tag { color: #5a4b1f; }
+  .ps .col-b .tag { color: var(--lime); }
+  .ps h3 { font-family: 'Bebas Neue', sans-serif; font-size: 44px; line-height: 1; letter-spacing: 0.02em; margin-bottom: 22px; margin-top: 10px; }
+  .ps .col-a h3 { color: #aaa; }
+  .ps .col-b h3 .accent { color: var(--lime); }
+  .ps p { color: var(--gray4); max-width: 44ch; font-size: 14px; line-height: 1.7; }
+  .ps ul { list-style: none; margin-top: 26px; }
+  .ps li { padding: 14px 0; border-bottom: 1px solid var(--line); display: flex; gap: 14px; align-items: center; font-size: 12px; font-weight: 600; letter-spacing: 0.04em; color: #ddd; }
+  .ps li:first-child { border-top: 1px solid var(--line); }
+  .ps .col-a li .mark { color: #6a5116; font-size: 18px; width: 20px; }
+  .ps .col-b li .mark { color: var(--lime); font-size: 14px; width: 20px; }
 
-  /* ======== PRODUCTS ======== */
-  #products { background: var(--bg2); }
-  .products-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-  .product-card {
-    border: 1px solid var(--line); border-radius: 14px;
-    padding: 36px; background: var(--card);
-    display: grid; grid-template-rows: auto 1fr auto;
-    position: relative; overflow: hidden;
-    transition: border-color .25s, box-shadow .25s;
-    min-height: 560px;
-  }
-  .product-card::before {
-    content: ''; position: absolute;
-    left: 0; top: 0; bottom: 0; width: 2px;
-    background: linear-gradient(180deg, var(--lime), transparent);
-  }
-  .product-card:hover {
-    border-color: var(--lime-dim);
-    box-shadow: 0 0 40px rgba(57,255,20,0.06);
-  }
-  .pc-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; }
-  .pc-sku { font-family: 'Bebas Neue', sans-serif; font-size: 44px; font-weight: 400; color: var(--lime); letter-spacing: 0.05em; line-height: 1; }
-  .pc-badge {
-    font-family: 'Inter', sans-serif; font-size: 9px; font-weight: 500;
-    color: var(--lime); letter-spacing: 0.18em; text-transform: uppercase;
-    padding: 5px 10px; border: 1px solid var(--lime-dim);
-    border-radius: 4px; background: var(--lime-soft);
-  }
-  .pc-name {
-    font-family: 'Inter', sans-serif; font-size: 11px;
-    color: var(--mid); letter-spacing: 0.18em; text-transform: uppercase;
-    margin-bottom: 20px;
-  }
-  .pc-stage {
-    aspect-ratio: 16/10; border-radius: 10px; overflow: hidden;
-    background: radial-gradient(ellipse at 50% 50%, rgba(57,255,20,0.1), transparent 60%),
-                linear-gradient(135deg, #161616, #0a0a0a);
-    border: 1px solid var(--line);
-    display: grid; place-items: center;
-    position: relative; margin-bottom: 22px;
-  }
-  .pc-stage .sg {
-    position: absolute; inset: 0;
-    background-image:
-      linear-gradient(rgba(57,255,20,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(57,255,20,0.04) 1px, transparent 1px);
-    background-size: 28px 28px;
-  }
-  .pc-photo {
-    position: absolute; inset: 0; width: 100%; height: 100%;
-    object-fit: contain; padding: 16px; z-index: 2;
-    filter: drop-shadow(0 16px 24px rgba(0,0,0,0.7)) drop-shadow(0 0 20px rgba(57,255,20,0.16));
-  }
-  .pc-stage-label {
-    position: absolute; top: 10px; left: 12px; z-index: 3;
-    font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: 0.2em;
-    color: var(--lime); text-transform: uppercase; opacity: 0.7;
-  }
-  .pc-stage-sn {
-    position: absolute; top: 12px; right: 12px; z-index: 3;
-    font-family: 'Inter', sans-serif; font-size: 8px; letter-spacing: 0.25em;
-    color: rgba(255,255,255,0.3); text-transform: uppercase;
-  }
-  .pc-bullets { list-style: none; display: flex; flex-direction: column; gap: 9px; margin-bottom: 24px; }
-  .pc-bullets li {
-    font-family: 'Inter', sans-serif; font-size: 12px;
-    color: var(--mid); display: flex; gap: 10px; align-items: flex-start;
-    line-height: 1.5;
-  }
-  .pc-bullets li::before {
-    content: '→'; color: var(--lime); font-weight: 700;
-    flex-shrink: 0; margin-top: 1px;
-  }
-  .pc-foot {
-    display: flex; justify-content: space-between; align-items: center;
-    padding-top: 20px; border-top: 1px solid var(--line);
-  }
-  .pc-price {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px; font-weight: 400; color: var(--lime);
-    letter-spacing: 0.06em; line-height: 1;
-  }
-  .pc-price-sub {
-    font-family: 'Inter', sans-serif; font-size: 10px;
-    color: var(--muted); letter-spacing: 0.12em; margin-top: 4px;
-  }
-  .pc-cta {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-family: 'Inter', sans-serif; font-size: 11px;
-    font-weight: 500; color: var(--lime); letter-spacing: 0.18em;
-    text-transform: uppercase; transition: gap .2s;
-    cursor: pointer; background: none; border: none;
-  }
-  .product-card:hover .pc-cta { gap: 12px; }
+  /* PRODUCTS */
+  #products { background: var(--charcoal); }
+  .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .product-card { background: rgba(255,255,255,0.02); border: 1px solid var(--line); border-radius: 12px; padding: 40px 38px; display: grid; grid-template-rows: auto 1fr auto; position: relative; overflow: hidden; transition: border-color .2s, background .2s, box-shadow .2s; min-height: 580px; }
+  .product-card:hover { border-color: var(--lime-dim); background: rgba(57,255,20,0.02); box-shadow: 0 0 40px rgba(57,255,20,0.05); }
+  .product-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: linear-gradient(180deg, var(--lime), transparent); }
+  .product-card.featured { border-color: var(--lime); }
+  .flagship-badge { position: absolute; top: -1px; left: 50%; transform: translateX(-50%); background: var(--lime); color: #080a08; font-family: 'Bebas Neue', sans-serif; font-size: 11px; letter-spacing: 0.14em; padding: 3px 14px; border-radius: 0 0 4px 4px; white-space: nowrap; z-index: 2; }
+  .pc-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px; }
+  .pc-head.mt { margin-top: 16px; }
+  .pc-sku { font-family: 'Bebas Neue', sans-serif; font-size: 44px; color: var(--lime); letter-spacing: 0.05em; line-height: 1; }
+  .pc-badge { font-size: 10px; font-weight: 700; color: var(--lime); letter-spacing: 0.2em; text-transform: uppercase; border: 1px solid var(--lime-dim); padding: 5px 10px; border-radius: 4px; background: var(--lime-soft); white-space: nowrap; }
+  .pc-name { font-size: 12px; font-weight: 700; color: #fff; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 24px; }
+  .pc-stage { position: relative; aspect-ratio: 16/10; border-radius: 10px; overflow: hidden; background: radial-gradient(ellipse at 55% 55%, rgba(57,255,20,0.12), transparent 60%), linear-gradient(135deg, #1c1c1c 0%, #0e0e0e 100%); border: 1px solid var(--line); display: grid; place-items: center; margin-bottom: 26px; }
+  .pc-stage .sg { position: absolute; inset: 0; background-image: linear-gradient(rgba(57,255,20,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(57,255,20,0.05) 1px, transparent 1px); background-size: 28px 28px; }
+  .pc-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; padding: 18px; filter: drop-shadow(0 20px 30px rgba(0,0,0,0.7)) drop-shadow(0 0 25px rgba(57,255,20,0.18)); z-index: 1; }
+  .pc-scrim { position: absolute; inset: 0; z-index: 0; pointer-events: none; background: radial-gradient(ellipse at 50% 50%, transparent 50%, rgba(13,13,13,0.4) 85%, rgba(13,13,13,0.85) 100%); }
+  .pc-tag { position: absolute; top: 12px; left: 14px; z-index: 2; font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 0.12em; color: var(--lime); text-shadow: 0 0 14px rgba(57,255,20,0.5); }
+  .pc-sn { position: absolute; top: 14px; right: 14px; z-index: 2; font-size: 8px; letter-spacing: 0.28em; color: rgba(255,255,255,0.55); }
+  .pc-bullets { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+  .pc-bullets li { font-size: 13px; color: var(--gray4); display: flex; gap: 10px; align-items: flex-start; line-height: 1.5; }
+  .pc-bullets li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--lime); flex-shrink: 0; margin-top: 5px; }
+  .pc-foot { display: flex; justify-content: space-between; align-items: center; padding-top: 22px; border-top: 1px solid var(--line); }
+  .pc-price { font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: var(--lime); letter-spacing: 0.06em; line-height: 1; }
+  .pc-price-sub { font-size: 10px; color: var(--gray3); letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700; margin-top: 3px; }
+  .pc-cta { display: inline-flex; align-items: center; gap: 10px; font-size: 11px; color: var(--lime); letter-spacing: 0.22em; text-transform: uppercase; font-weight: 700; transition: gap .2s; }
+  .product-card:hover .pc-cta { gap: 14px; }
 
-  /* harnesses */
-  .harness-band {
-    margin-top: 36px; padding: 32px 36px;
-    border: 1px solid var(--lime-dim); border-radius: 14px;
-    background: var(--lime-soft);
-  }
-  .harness-head {
-    display: flex; justify-content: space-between; align-items: flex-end;
-    gap: 24px; margin-bottom: 20px;
-  }
-  .harness-head h3 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 36px; font-weight: 400; color: var(--lime);
-    letter-spacing: 0.04em; line-height: 1;
-  }
-  .harness-head p {
-    font-family: 'Inter', sans-serif; font-size: 12px;
-    color: var(--mid); max-width: 44ch; line-height: 1.7;
-  }
-  .harness-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
-  .harness-item {
-    padding: 12px 14px; background: rgba(0,0,0,0.3);
-    border: 1px solid var(--line); border-radius: 7px;
-    font-family: 'Inter', sans-serif; font-size: 11px;
-    color: #ccc; display: flex; align-items: center; gap: 8px;
-    letter-spacing: 0.04em;
-  }
-  .harness-item::before { content: '→'; color: var(--lime); }
+  .harness-band { margin-top: 40px; padding: 32px 36px; border: 1px solid var(--lime-dim); border-radius: 12px; background: var(--lime-soft); }
+  .harness-head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 22px; gap: 24px; }
+  .harness-head h3 { font-family: 'Bebas Neue', sans-serif; font-size: 36px; color: var(--lime); letter-spacing: 0.04em; line-height: 1; }
+  .harness-head p { color: var(--gray4); font-size: 13px; max-width: 48ch; }
+  .harness-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .harness-item { padding: 14px 16px; background: rgba(0,0,0,0.3); border: 1px solid var(--line); border-radius: 6px; font-size: 13px; color: #ddd; display: flex; align-items: center; gap: 10px; }
+  .harness-item::before { content: '→'; color: var(--lime); font-weight: 700; }
 
-  /* ======== HOW IT WORKS ======== */
+  /* HOW IT WORKS */
   #how { background: var(--black); }
-  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-  .step {
-    padding: 40px 32px; border: 1px solid var(--line); border-radius: 14px;
-    background: var(--card); min-height: 340px; display: flex; flex-direction: column;
-    cursor: pointer; transition: border-color .2s, background .2s; position: relative;
-    overflow: hidden;
-  }
-  .step::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-    background: var(--lime); transform: scaleX(0); transform-origin: left;
-    transition: transform .3s ease;
-  }
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .step { background: rgba(255,255,255,0.02); padding: 44px 36px; cursor: pointer; position: relative; transition: background .2s, border-color .2s; border: 1px solid var(--line); border-radius: 12px; min-height: 360px; display: flex; flex-direction: column; overflow: hidden; }
+  .step::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--lime); transform: scaleX(0); transform-origin: left; transition: transform .35s ease; border-radius: 12px 12px 0 0; }
   .step.active::before { transform: scaleX(1); }
-  .step.active { border-color: var(--lime-dim); background: rgba(57,255,20,0.03); }
-  .step-no {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 90px; font-weight: 400; line-height: 0.85;
-    color: rgba(57,255,20,0.1); letter-spacing: 0.02em;
-    transition: color .25s;
-  }
+  .step:hover { border-color: var(--lime-dim); }
+  .step.active { background: rgba(57,255,20,0.04); border-color: var(--lime-dim); }
+  .step-no { font-family: 'Bebas Neue', sans-serif; font-size: 90px; line-height: 0.85; color: rgba(57,255,20,0.18); letter-spacing: 0.02em; transition: color .25s; }
   .step.active .step-no { color: var(--lime); }
-  .step-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 34px; font-weight: 400; letter-spacing: 0.03em;
-    line-height: 1; margin-top: 20px;
-  }
-  .step-desc {
-    font-family: 'Inter', sans-serif; font-size: 13px;
-    color: var(--mid); margin-top: 10px; line-height: 1.7; max-width: 30ch; flex: 1;
-  }
-  .step-foot {
-    display: flex; justify-content: space-between; align-items: center;
-    margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--line);
-  }
-  .step-foot .sk {
-    font-family: 'Inter', sans-serif; font-size: 9px; color: var(--muted);
-    letter-spacing: 0.22em; text-transform: uppercase;
-  }
-  .step-dot {
-    width: 8px; height: 8px; border-radius: 50%;
-    background: var(--line2); transition: all .2s;
-  }
-  .step.active .step-dot { background: var(--lime); box-shadow: 0 0 10px var(--lime); }
+  .step-title { font-family: 'Bebas Neue', sans-serif; font-size: 34px; line-height: 1; letter-spacing: 0.03em; margin-top: 24px; }
+  .step-desc { color: var(--gray4); margin-top: 12px; font-size: 14px; line-height: 1.65; max-width: 32ch; flex: 1; }
+  .step-meta { margin-top: auto; padding-top: 28px; display: flex; justify-content: space-between; align-items: center; }
+  .step-meta .k { font-size: 10px; color: var(--gray3); letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700; }
+  .step-led { width: 10px; height: 10px; border-radius: 50%; background: #333; transition: all .2s; }
+  .step.active .step-led { background: var(--lime); box-shadow: 0 0 12px var(--lime); }
 
-  /* ======== WHY WINS ======== */
-  #wins { background: var(--bg2); }
-  .diffs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 44px; }
-  .diff {
-    padding: 32px 28px; border: 1px solid var(--line); border-radius: 14px;
-    background: var(--card); display: flex; flex-direction: column; gap: 14px;
-    position: relative; overflow: hidden;
-    transition: border-color .2s;
-  }
-  .diff::after {
-    content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 1px;
-    background: linear-gradient(90deg, var(--lime), transparent 60%);
-  }
-  .diff:hover { border-color: var(--lime-dim); }
-  .diff-icon {
-    width: 42px; height: 42px; border-radius: 9px;
-    background: var(--lime-soft); border: 1px solid var(--lime-dim);
-    display: grid; place-items: center; color: var(--lime);
-  }
-  .diff-icon svg { width: 18px; height: 18px; }
-  .diff h4 { font-family: 'Bebas Neue', sans-serif; font-size: 26px; font-weight: 400; letter-spacing: 0.04em; line-height: 1; }
-  .diff p { font-family: 'Inter', sans-serif; font-size: 12px; color: var(--mid); line-height: 1.75; flex: 1; }
-  .diff .kicker { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 500; color: var(--lime); letter-spacing: 0.18em; text-transform: uppercase; }
-
-  .vs-table {
-    display: grid; grid-template-columns: 2fr 1fr 1fr;
-    border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
-    background: var(--card);
-  }
-  .vs-head {
-    padding: 12px 20px; font-family: 'Inter', sans-serif;
-    font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase;
-    background: rgba(0,0,0,0.3);
-  }
-  .vs-head.feat { color: var(--muted); }
+  /* WHY WINS */
+  #wins { background: var(--charcoal); }
+  .diffs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 50px; }
+  .diff { padding: 36px 32px; background: rgba(255,255,255,0.025); border: 1px solid var(--line); border-radius: 12px; display: flex; flex-direction: column; gap: 16px; position: relative; overflow: hidden; transition: all .2s; min-height: 280px; }
+  .diff:hover { border-color: var(--lime-dim); background: rgba(57,255,20,0.03); }
+  .diff::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: linear-gradient(90deg, var(--lime), transparent); }
+  .diff-icon { width: 48px; height: 48px; border-radius: 10px; background: var(--lime-soft); border: 1px solid var(--lime-dim); display: grid; place-items: center; color: var(--lime); }
+  .diff-icon svg { width: 22px; height: 22px; }
+  .diff h4 { font-family: 'Bebas Neue', sans-serif; font-size: 26px; line-height: 1; letter-spacing: 0.04em; }
+  .diff p { color: var(--gray4); font-size: 13px; line-height: 1.7; flex: 1; }
+  .diff .kicker { font-size: 11px; font-weight: 700; color: var(--lime); letter-spacing: 0.2em; text-transform: uppercase; }
+  .vs-table { display: grid; grid-template-columns: 2fr 1fr 1fr; background: rgba(255,255,255,0.02); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  .vs-head { padding: 14px 22px; font-size: 10px; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; background: var(--charcoal); }
+  .vs-head.feat { color: var(--gray4); }
   .vs-head.us { color: var(--lime); border-left: 1px solid var(--line); text-align: center; }
-  .vs-head.them { color: var(--muted); border-left: 1px solid var(--line); text-align: center; }
-  .vs-cell { padding: 14px 20px; font-family: 'Inter', sans-serif; font-size: 12px; border-top: 1px solid var(--line); }
-  .vs-cell.feat { color: var(--mid); }
-  .vs-cell.yes { color: var(--lime); font-weight: 500; border-left: 1px solid var(--line); text-align: center; }
-  .vs-cell.no { color: var(--muted); border-left: 1px solid var(--line); text-align: center; }
+  .vs-head.them { color: var(--gray3); border-left: 1px solid var(--line); text-align: center; }
+  .vs-cell { padding: 16px 22px; font-size: 13px; border-top: 1px solid #1f1f1f; }
+  .vs-cell.feat { color: var(--gray4); }
+  .vs-cell.yes { color: var(--lime); font-weight: 700; border-left: 1px solid var(--line); text-align: center; }
+  .vs-cell.no { color: #555; border-left: 1px solid var(--line); text-align: center; }
 
-  /* ======== AUDIENCE ======== */
+  /* AUDIENCE */
   #who { background: var(--black); }
-  .audience { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 36px; }
-  .aud-card {
-    padding: 32px 28px; border: 1px solid var(--line); border-radius: 14px;
-    background: var(--card); min-height: 240px; display: flex;
-    flex-direction: column; gap: 12px;
-    transition: border-color .2s;
-  }
+  .audience { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 40px; }
+  .aud-card { padding: 36px 32px; background: rgba(255,255,255,0.02); border: 1px solid var(--line); border-radius: 12px; transition: border-color .2s; min-height: 260px; display: flex; flex-direction: column; gap: 14px; }
   .aud-card:hover { border-color: var(--lime-dim); }
-  .aud-sub {
-    font-family: 'Inter', sans-serif; font-size: 9px; font-weight: 500;
-    color: var(--lime); letter-spacing: 0.22em; text-transform: uppercase;
-  }
-  .aud-title { font-family: 'Bebas Neue', sans-serif; font-size: 34px; font-weight: 400; letter-spacing: 0.04em; line-height: 1; }
-  .aud-desc { font-family: 'Inter', sans-serif; font-size: 12px; color: var(--mid); line-height: 1.75; flex: 1; }
-  .aud-link {
-    font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 500;
-    color: var(--lime); letter-spacing: 0.2em; text-transform: uppercase;
-    display: inline-flex; gap: 8px; align-items: center; transition: gap .2s;
-  }
+  .aud-sub { font-size: 10px; font-weight: 700; color: var(--lime); letter-spacing: 0.24em; text-transform: uppercase; }
+  .aud-title { font-family: 'Bebas Neue', sans-serif; font-size: 34px; line-height: 1; letter-spacing: 0.04em; }
+  .aud-desc { color: var(--gray4); font-size: 14px; line-height: 1.7; flex: 1; }
+  .aud-link { font-size: 11px; font-weight: 700; color: var(--lime); letter-spacing: 0.22em; text-transform: uppercase; display: inline-flex; gap: 8px; align-items: center; transition: gap .2s; }
   .aud-card:hover .aud-link { gap: 12px; }
+  .compat { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; }
+  .compat-panel { padding: 28px 32px; background: rgba(255,255,255,0.02); border: 1px solid var(--line); border-radius: 12px; }
+  .compat-panel h4 { font-size: 10px; font-weight: 700; color: var(--gray3); letter-spacing: 0.24em; text-transform: uppercase; margin-bottom: 18px; }
+  .compat-brands { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .compat-brands .b, .compat-machines .m { padding: 14px 16px; background: rgba(0,0,0,0.3); border: 1px solid var(--line); border-radius: 6px; font-size: 13px; color: #ddd; display: flex; align-items: center; gap: 10px; }
+  .compat-brands .b::before, .compat-machines .m::before { content: '›'; color: var(--lime); font-weight: 900; }
+  .compat-machines { display: flex; flex-direction: column; gap: 8px; }
 
-  .compat { display: grid; grid-template-columns: 2fr 1fr; gap: 14px; }
-  .compat-panel {
-    padding: 24px 28px; background: var(--card);
-    border: 1px solid var(--line); border-radius: 14px;
-  }
-  .compat-panel h4 {
-    font-family: 'Inter', sans-serif; font-size: 9px; font-weight: 500;
-    color: var(--muted); letter-spacing: 0.25em; text-transform: uppercase;
-    margin-bottom: 16px;
-  }
-  .compat-brands { display: grid; grid-template-columns: repeat(4, 1fr); gap: 7px; }
-  .compat-brands .b, .compat-machines .m {
-    padding: 11px 14px; background: rgba(0,0,0,0.4);
-    border: 1px solid var(--line); border-radius: 7px;
-    font-family: 'Inter', sans-serif; font-size: 11px; color: #ccc;
-    display: flex; align-items: center; gap: 8px;
-  }
-  .compat-brands .b::before, .compat-machines .m::before { content: '›'; color: var(--lime); font-weight: 700; }
-  .compat-machines { display: flex; flex-direction: column; gap: 7px; }
-
-  /* ======== ABOUT ======== */
-  #about { background: var(--bg2); }
-  .about-grid {
-    display: grid; grid-template-columns: 1.1fr 1fr;
-    border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
-  }
-  .about-copy { padding: 52px 44px; border-right: 1px solid var(--line); background: var(--card); }
-  .about-copy p {
-    font-family: 'Inter', sans-serif; font-size: 13px;
-    color: var(--mid); max-width: 50ch; margin-bottom: 14px; line-height: 1.8;
-  }
-  .about-copy p strong { color: #ddd; font-weight: 500; }
-  .about-meta {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--line);
-  }
-  .about-meta .k {
-    font-family: 'Inter', sans-serif; font-size: 9px;
-    color: var(--muted); letter-spacing: 0.22em; text-transform: uppercase;
-  }
-  .about-meta .v { font-family: 'Bebas Neue', sans-serif; font-size: 30px; font-weight: 400; letter-spacing: 0.04em; margin-top: 4px; }
-
-  .team { padding: 44px 36px; background: var(--card); display: flex; flex-direction: column; gap: 14px; }
-  .team-header {
-    font-family: 'Inter', sans-serif; font-size: 9px; font-weight: 500;
-    color: var(--lime); letter-spacing: 0.25em; text-transform: uppercase;
-    margin-bottom: 4px;
-  }
-  .team-card {
-    display: flex; gap: 16px; align-items: flex-start;
-    padding: 18px; background: rgba(0,0,0,0.3);
-    border: 1px solid var(--line); border-radius: 10px;
-    transition: border-color .2s;
-  }
+  /* ABOUT */
+  #about { background: var(--charcoal); }
+  .about { display: grid; grid-template-columns: 1.1fr 1fr; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  .about-copy { padding: 56px 48px; border-right: 1px solid var(--line); background: var(--bg); }
+  .about-copy p { color: var(--gray4); font-size: 15px; max-width: 52ch; margin-bottom: 16px; line-height: 1.75; }
+  .about-copy p strong { color: #fff; font-weight: 600; }
+  .about-meta { margin-top: 36px; display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); padding-top: 24px; }
+  .about-meta .k { font-size: 10px; color: var(--gray3); letter-spacing: 0.22em; text-transform: uppercase; font-weight: 700; }
+  .about-meta .v { font-family: 'Bebas Neue', sans-serif; font-size: 30px; margin-top: 4px; letter-spacing: 0.04em; }
+  .team { padding: 48px 44px; background: var(--bg); display: flex; flex-direction: column; gap: 18px; }
+  .team-title { font-size: 10px; font-weight: 700; color: var(--lime); letter-spacing: 0.26em; text-transform: uppercase; margin-bottom: 6px; }
+  .team-card { display: flex; gap: 18px; align-items: flex-start; padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid var(--line); border-radius: 10px; transition: border-color .2s; }
   .team-card:hover { border-color: var(--lime-dim); }
-  .team-avatar {
-    width: 46px; height: 46px; border-radius: 50%; flex-shrink: 0;
-    background: linear-gradient(135deg, #222, #0e0e0e);
-    border: 1.5px solid var(--lime);
-    display: grid; place-items: center;
-    font-size: 18px; font-weight: 800; color: var(--lime); letter-spacing: -0.02em;
-  }
+  .team-avatar { width: 52px; height: 52px; border-radius: 50%; background: linear-gradient(135deg, #2a2a2a, #161616); border: 2px solid var(--lime); display: grid; place-items: center; font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--lime); flex-shrink: 0; }
   .team-name { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 2px; }
-  .team-role {
-    font-family: 'Inter', sans-serif; font-size: 9px; font-weight: 500;
-    color: var(--lime); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 7px;
-  }
-  .team-bio { font-family: 'Inter', sans-serif; font-size: 11px; color: var(--mid); line-height: 1.65; }
+  .team-role { font-size: 10px; font-weight: 700; color: var(--lime); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 8px; }
+  .team-bio { font-size: 12px; color: var(--gray4); line-height: 1.65; }
 
-  /* ======== FOOTER CTA ======== */
-  .footer-cta {
-    background: radial-gradient(ellipse at 15% 110%, rgba(57,255,20,0.08), transparent 50%),
-                var(--bg2);
-    border-bottom: 1px solid var(--line);
-  }
-  .fc-inner {
-    display: grid; grid-template-columns: 1.3fr 1fr;
-    gap: 60px; align-items: end; padding: 100px 0;
-  }
-  .fc-inner h2 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(56px, 8vw, 128px);
-    font-weight: 400; line-height: 0.88; letter-spacing: 0.02em;
-  }
+  /* FOOTER CTA */
+  .footer-cta { background: radial-gradient(ellipse at 20% 100%, rgba(57,255,20,0.08), transparent 45%), var(--charcoal); border-bottom: 1px solid var(--line); }
+  .fc-inner { display: grid; grid-template-columns: 1.3fr 1fr; gap: 60px; align-items: end; padding: 110px 0; }
+  .fc-inner h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(56px, 8vw, 128px); line-height: 0.88; letter-spacing: 0.02em; }
   .fc-inner h2 .accent { color: var(--lime); }
-  .fc-tagline {
-    margin-top: 14px; font-family: 'Inter', sans-serif;
-    font-size: 11px; font-weight: 500; color: var(--muted);
-    letter-spacing: 0.22em; text-transform: uppercase;
-  }
-  .fc-form { display: flex; flex-direction: column; gap: 12px; }
-  .fc-row {
-    display: flex; border: 1px solid var(--line2); border-radius: 8px; overflow: hidden;
-  }
-  .fc-row input {
-    flex: 1; background: transparent; border: 0;
-    padding: 16px 18px; color: #fff;
-    font-family: 'Inter', sans-serif; font-size: 13px; outline: none;
-  }
-  .fc-row input::placeholder { color: var(--muted); }
-  .fc-row button {
-    padding: 0 22px; background: var(--lime); color: var(--black);
-    font-family: 'Inter', sans-serif; font-weight: 500;
-    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
-    transition: background .15s;
-  }
-  .fc-row button:hover { background: var(--lime-hi); }
-  .fc-note { font-family: 'Inter', sans-serif; font-size: 11px; color: var(--muted); }
-  .fc-note.ok { color: var(--lime); }
-  .fc-actions { display: flex; gap: 8px; margin-top: 4px; }
-  .fc-actions .btn { flex: 1; justify-content: center; }
+  .fc-tagline { margin-top: 16px; font-size: 13px; font-weight: 700; color: var(--gray3); letter-spacing: 0.24em; text-transform: uppercase; }
+  .fc-form { display: flex; flex-direction: column; gap: 14px; }
+  .fc-form .row { display: flex; border: 1px solid var(--line2); border-radius: 6px; overflow: hidden; }
+  .fc-form input { flex: 1; background: transparent; border: 0; padding: 18px 20px; color: #fff; font: inherit; outline: none; font-size: 14px; }
+  .fc-form input::placeholder { color: var(--gray3); }
+  .fc-form button { padding: 0 26px; background: var(--lime); color: var(--black); font-weight: 700; font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; transition: background .15s; }
+  .fc-form button:hover { background: var(--lime-hi); }
+  .fc-form .note { color: var(--gray3); font-size: 12px; }
+  .fc-form .note.ok { color: var(--lime); }
+  .fc-actions { display: flex; gap: 10px; margin-top: 6px; }
+  .fc-actions .btn { flex: 1; }
 
-  /* ======== FOOTER ======== */
-  footer { padding: 52px 0 36px; background: var(--black); }
-  .footer-grid {
-    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
-    gap: 36px; padding-bottom: 36px; border-bottom: 1px solid var(--line);
-  }
-  .footer-col h5 {
-    font-family: 'Inter', sans-serif; font-size: 9px; font-weight: 500;
-    color: var(--lime); letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 14px;
-  }
-  .footer-col a {
-    display: block; padding: 5px 0;
-    font-family: 'Inter', sans-serif; font-size: 12px; color: var(--mid);
-    transition: color .15s;
-  }
+  /* FOOTER */
+  footer { padding: 56px 0 40px; color: var(--gray4); background: var(--black); }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 40px; border-bottom: 1px solid var(--line); }
+  .footer-col h5 { font-size: 11px; font-weight: 700; color: var(--lime); letter-spacing: 0.24em; text-transform: uppercase; margin-bottom: 18px; }
+  .footer-col a { display: block; padding: 6px 0; color: #ccc; font-size: 14px; transition: color .15s; }
   .footer-col a:hover { color: var(--lime); }
-  .footer-brand {
-    font-family: 'Inter', sans-serif; font-size: 11px;
-    color: var(--muted); margin-top: 14px; line-height: 1.75; max-width: 34ch;
-  }
-  .footer-tagline {
-    margin-top: 16px; font-family: 'Bebas Neue', sans-serif;
-    font-size: 18px; font-weight: 400; letter-spacing: 0.1em; color: #fff;
-  }
+  .footer-brand { max-width: 40ch; color: var(--gray4); font-size: 13px; margin-top: 16px; line-height: 1.7; }
+  .footer-tagline { margin-top: 18px; font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 0.1em; color: #fff; }
   .footer-tagline span { color: var(--lime); }
-  .footer-bottom {
-    display: flex; justify-content: space-between; align-items: center;
-    padding-top: 22px; font-family: 'Inter', sans-serif;
-    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted);
-  }
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 26px; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gray3); font-weight: 700; }
 
-  /* ======== REVEAL ======== */
-  .reveal { opacity: 0; transform: translateY(20px); transition: opacity .65s ease, transform .65s ease; }
+  /* REVEAL */
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .65s ease, transform .65s ease; }
   .reveal.in { opacity: 1; transform: none; }
 
-  /* ======== RESPONSIVE ======== */
+  /* RESPONSIVE */
   @media (max-width: 1100px) {
     .hero { grid-template-columns: 1fr; min-height: auto; }
     .hero-left { border-right: 0; border-bottom: 1px solid var(--line); }
-    .hero-right { min-height: 55vh; }
-    .products-grid, .steps, .diffs, .audience { grid-template-columns: 1fr; }
-    .harness-grid, .compat-brands { grid-template-columns: repeat(2, 1fr); }
-    .ps, .about-grid, .compat, .fc-inner { grid-template-columns: 1fr; }
-    .ps-col-a { border-right: 0; border-bottom: 1px solid var(--line); }
+    .hero-right { min-height: 60vh; }
+    .products-grid { grid-template-columns: 1fr; }
+    .steps, .diffs { grid-template-columns: 1fr; }
+    .harness-grid { grid-template-columns: repeat(2, 1fr); }
+    .ps, .about, .compat { grid-template-columns: 1fr; }
+    .ps .col-a { border-right: 0; border-bottom: 1px solid var(--line); }
     .about-copy { border-right: 0; border-bottom: 1px solid var(--line); }
+    .fc-inner { grid-template-columns: 1fr; }
     .footer-grid { grid-template-columns: 1fr 1fr; }
-    .sec-header { grid-template-columns: 1fr; gap: 16px; }
-    .nav-center { display: none; }
-    .vs-table { grid-template-columns: 1.4fr 1fr 1fr; }
+    .section-head { grid-template-columns: 1fr; gap: 20px; }
+    .nav-links { display: none; }
+    .vs-table { grid-template-columns: 1.5fr 1fr 1fr; }
+    .audience { grid-template-columns: 1fr; }
   }
   @media (max-width: 640px) {
-    section { padding: 72px 0; }
-    .hero-left { padding: 44px var(--pad) 44px; }
-    .ps-col { padding: 32px 22px; }
-    .product-card, .step { padding: 26px 22px; min-height: auto; }
-    .about-copy, .team { padding: 32px 22px; }
+    section { padding: 80px 0; }
+    .hero-left { padding: 48px var(--pad); }
+    .ps .col { padding: 36px 24px; }
+    .product-card { padding: 28px 24px; min-height: auto; }
+    .step { padding: 32px 24px; min-height: auto; }
+    .compat-brands, .harness-grid { grid-template-columns: repeat(2, 1fr); }
+    .about-copy, .team { padding: 36px 24px; }
     .footer-grid { grid-template-columns: 1fr; }
-    .fc-inner { padding: 72px 0; }
   }
 </style>
 </head>
@@ -787,10 +302,9 @@
 <nav class="nav">
   <div class="wrap nav-inner">
     <a href="#top" class="logo" aria-label="Skid Sync home">
-      <span class="logo-mark">SS</span>
-      <span class="logo-name"><span class="s1">SKID</span><span class="s2">SYNC</span></span>
+      <img src="https://raw.githubusercontent.com/braydendorrity-del/skid-sync/main/assets/Gemini_Generated_Image_blp5oblp5oblp5ob%20(2)%20(1).png" alt="Skid Sync" />
     </a>
-    <div class="nav-center">
+    <div class="nav-links">
       <a href="#products" data-link>Shop</a>
       <a href="#how" data-link>How It Works</a>
       <a href="#wins" data-link>Why Skid Sync</a>
@@ -798,12 +312,8 @@
       <a href="#about" data-link>About</a>
     </div>
     <div class="nav-right">
-      <a href="#" class="nav-icon" aria-label="YouTube">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M23 7s-.2-1.6-.9-2.3c-.8-.8-1.7-.8-2.1-.9C16.9 3.5 12 3.5 12 3.5s-4.9 0-7.9.3c-.4 0-1.3.1-2.1.9C1.2 5.4 1 7 1 7S.8 8.9.8 10.8v1.4C.8 14.1 1 16 1 16s.2 1.6.9 2.3c.8.8 1.9.8 2.4.9 1.7.2 7.4.3 7.7.3 0 0 4.9 0 7.9-.3.4 0 1.3-.1 2.1-.9.7-.7.9-2.3.9-2.3s.2-1.9.2-3.8v-1.4C23.2 8.9 23 7 23 7zM10 14V8l5 3-5 3z"/></svg>
-      </a>
-      <a href="#" class="nav-icon" aria-label="Instagram">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
-      </a>
+      <button class="icon-btn" aria-label="YouTube"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M23 7s-.2-1.6-.9-2.3c-.8-.8-1.7-.8-2.1-.9C16.9 3.5 12 3.5 12 3.5s-4.9 0-7.9.3c-.4 0-1.3.1-2.1.9C1.2 5.4 1 7 1 7S.8 8.9.8 10.8v1.4C.8 14.1 1 16 1 16s.2 1.6.9 2.3c.8.8 1.9.8 2.4.9 1.7.2 7.4.3 7.7.3 0 0 4.9 0 7.9-.3.4 0 1.3-.1 2.1-.9.7-.7.9-2.3.9-2.3s.2-1.9.2-3.8v-1.4C23.2 8.9 23 7 23 7zM10 14V8l5 3-5 3z"/></svg></button>
+      <button class="icon-btn" aria-label="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></button>
       <a href="mailto:info@skid-sync.com" class="nav-cta">Find a Dealer</a>
     </div>
   </div>
@@ -813,101 +323,63 @@
 <header class="hero" id="top">
   <div class="hero-left">
     <div>
-      <div class="hero-eyebrow">
-        <span class="led"></span>
-        <span class="label">Built in Utah · Built to Outperform</span>
-      </div>
-      <h1 class="hero-title reveal in" style="margin-top:24px">
-        Universal<br/>
-        <span class="accent">Wireless</span><br/>
-        <span class="alt">Control.</span>
-      </h1>
+      <div class="hero-tag"><span class="led"></span><span>Built in Utah · Built to Outperform</span></div>
+      <h1 class="hero-title reveal in" style="margin-top:28px">Universal<br/><span class="accent">Wireless</span><br/>Control.</h1>
       <p class="hero-sub">Power any attachment. Any machine. One wireless box replaces machine-specific harnesses — no cab wiring, no brand compatibility headaches, installs in minutes.</p>
       <div class="hero-cta">
-        <a href="https://www.skid-sync.com/attachment" class="btn btn-primary">
-          Shop Now
-          <svg width="13" height="9" viewBox="0 0 13 9" fill="none"><path d="M1 4.5h11M8 1l4 3.5L8 8" stroke="currentColor" stroke-width="1.6"/></svg>
-        </a>
+        <a href="https://www.skid-sync.com/attachment" class="btn btn-primary">Shop Now <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M1 5h12M9 1l4 4-4 4" stroke="currentColor" stroke-width="1.8"/></svg></a>
         <a href="#how" class="btn btn-outline">How It Works</a>
       </div>
     </div>
-    <div class="hero-stats">
-      <div class="stat-cell">
-        <div class="k">Works With</div>
-        <div class="v">Any <span class="u">machine</span></div>
-      </div>
-      <div class="stat-cell">
-        <div class="k">Install</div>
-        <div class="v">Minutes</div>
-      </div>
-      <div class="stat-cell">
-        <div class="k">Starts At</div>
-        <div class="v">$720 <span class="u">vs. $6K+ OEM</span></div>
-      </div>
+    <div class="hero-meta">
+      <div class="cell"><div class="k">Works With</div><div class="v">Any <span class="unit">machine</span></div></div>
+      <div class="cell"><div class="k">Install</div><div class="v">Minutes</div></div>
+      <div class="cell"><div class="k">Starts At</div><div class="v">$720 <span class="unit">vs. $6K+ OEM</span></div></div>
     </div>
   </div>
-
   <div class="hero-right">
     <div class="stage-grid"></div>
-    <div class="stage-radial"></div>
+    <div class="stage-glow"></div>
     <div class="orbit orbit-3"><div class="orbit-dot"></div></div>
     <div class="orbit orbit-2"><div class="orbit-dot"></div></div>
     <div class="orbit orbit-1"><div class="orbit-dot"></div></div>
-
     <div class="hero-photo">
-      <img src="assets/hero-u600-kit.jpg" alt="Skid Sync U-600 wireless control box and remote with magnetic mounts" />
+      <img src="https://raw.githubusercontent.com/braydendorrity-del/skid-sync/main/assets/IMG_5199.jpg" alt="Skid Sync U-600 wireless control box and remote" />
+      <div class="ph-label">U-600 · Kit</div>
+      <div class="ph-sn">SN · 97003864</div>
     </div>
-
-    <div class="product-stage">
-      <div class="product-box">
-        <div class="box-brand">Skid Sync</div>
-        <div class="sku">U-600</div>
-        <div class="box-leds">
-          <div class="box-led"></div><div class="box-led"></div><div class="box-led"></div>
-          <div class="box-led"></div><div class="box-led"></div><div class="box-led"></div>
-        </div>
-      </div>
-      <div class="box-side"></div>
-      <div class="box-btm"></div>
-    </div>
-
     <div class="hero-callouts">
-      <div class="callout c1"><span class="callout-line"></span><span>01 · Epoxy Potted</span></div>
-      <div class="callout c2"><span>02 · Lithium Battery</span><span class="callout-line"></span></div>
-      <div class="callout c3"><span class="callout-line"></span><span>03 · Fuse Protected</span></div>
+      <div class="callout c1"><span class="line"></span><span>01 · Epoxy Potted</span></div>
+      <div class="callout c2"><span>02 · Lithium Battery</span><span class="line"></span></div>
+      <div class="callout c3"><span class="line"></span><span>03 · Fuse Protected</span></div>
     </div>
-    <div class="photo-label">U-600 · Kit</div>
-    <div class="photo-sn">SN · 97003864</div>
   </div>
 </header>
 
 <!-- PROBLEM / SOLUTION -->
 <section id="why">
   <div class="wrap">
-    <div class="sec-header">
-      <div>
-        <div class="sec-num">§ 01 · The Problem</div>
-        <h2 class="sec-title">Harnesses Are<br/><span class="accent">The Headache.</span></h2>
-      </div>
-      <p class="sec-lede">Different machines. Different connectors. Different harnesses. Big inventory headache and constant swap time on the job site — until now.</p>
+    <div class="section-head">
+      <div><div class="section-num">§ 01 · The Problem</div><h2>Harnesses Are<br/><span class="accent">The Headache.</span></h2></div>
+      <p class="lede">Different machines. Different connectors. Different harnesses. Big inventory headache and constant swap time on the job site — until now.</p>
     </div>
     <div class="ps reveal">
-      <div class="ps-col ps-col-a">
-        <span class="ps-badge ps-badge-a">The Old Way</span>
+      <div class="col col-a">
+        <span class="tag">The Old Way</span>
         <h3>Wired Everything.</h3>
         <p>Harnesses routed through boom arms and cab glass get pinched, corroded, and ripped. "Will it work with my machine?" Nobody knows — until it doesn't.</p>
-        <ul class="ps-list">
+        <ul>
           <li><span class="mark">—</span> Machine-specific, brand-specific</li>
           <li><span class="mark">—</span> 30–60 min installs, every time</li>
           <li><span class="mark">—</span> Exposed connectors, field failures</li>
           <li><span class="mark">—</span> OEM kits: $6,000+</li>
         </ul>
       </div>
-      <div class="ps-col">
-        <span class="ps-badge ps-badge-b">The Skid Sync Way</span>
+      <div class="col col-b">
+        <span class="tag">The Skid Sync Way</span>
         <h3>Wireless. <span class="accent">Universal.</span></h3>
         <p>One battery-powered box. Any brand, any attachment. No cab wiring. Same cost as three harnesses — installs in minutes and survives the job site.</p>
-        <ul class="ps-list">
+        <ul>
           <li><span class="mark">+</span> Works with Bobcat, CAT, Deere, and more</li>
           <li><span class="mark">+</span> Epoxy-potted, sealed, fuse-protected</li>
           <li><span class="mark">+</span> Plug-and-play attachment harnesses</li>
@@ -921,29 +393,52 @@
 <!-- PRODUCTS -->
 <section id="products">
   <div class="wrap">
-    <div class="sec-header">
-      <div>
-        <div class="sec-num">§ 02 · Product Lineup</div>
-        <h2 class="sec-title">Universal.<br/>Powerful. <span class="accent">Simple.</span></h2>
-      </div>
-      <p class="sec-lede">Two core boxes cover the attachment world. Pair them with a plug-and-play harness for your specific attachment — no cutting, no crimping, no guessing.</p>
+    <div class="section-head">
+      <div><div class="section-num">§ 02 · Product Lineup</div><h2>Built For Your<br/>Machine. <span class="accent">Any Attachment.</span></h2></div>
+      <p class="lede">Bobcat machine? Our flagship CAN-Bus controller reads your joystick directly — no cables, no remotes. Any other machine? Our universal boxes work on everything.</p>
     </div>
-
     <div class="products-grid">
-      <article class="product-card reveal">
+      <!-- B-600 -->
+      <article class="product-card featured reveal">
+        <div class="flagship-badge">FLAGSHIP</div>
+        <div class="pc-head mt">
+          <div><div class="pc-sku">B-600</div><div class="pc-name">Bobcat Wireless Controller</div></div>
+          <span class="pc-badge">New</span>
+        </div>
         <div>
-          <div class="pc-top">
-            <div>
-              <div class="pc-sku">U-400</div>
-              <div class="pc-name">Universal Wireless Control</div>
-            </div>
-            <span class="pc-badge">Best Seller</span>
-          </div>
           <div class="pc-stage">
             <div class="sg"></div>
-            <img class="pc-photo" src="assets/product-remote.jpg" alt="Skid Sync wireless remote with U-400 control box" />
-            <div class="pc-stage-label">U-400 · Kit</div>
-            <div class="pc-stage-sn">CH · 064</div>
+            <img class="pc-photo" src="https://raw.githubusercontent.com/braydendorrity-del/skid-sync/main/assets/IMG_5319.jpg" alt="Skid Sync B-600 Bobcat wireless attachment controller" />
+            <div class="pc-scrim"></div>
+            <div class="pc-tag">B-600 · Receiver</div>
+            <div class="pc-sn">SN · 97001</div>
+          </div>
+          <ul class="pc-bullets">
+            <li>Use your Bobcat with any attachment — no ACD device needed</li>
+            <li>Reads joystick signals directly from your Bobcat's CAN-Bus</li>
+            <li>Control through your existing joystick buttons — no handheld remote</li>
+            <li>Up to 6 functions on SJC machines, 4 on AHC machines</li>
+            <li>Transmitter plugs into 7-pin rear port — no machine wiring</li>
+          </ul>
+        </div>
+        <div class="pc-foot">
+          <div><div class="pc-price">$850</div><div class="pc-price-sub">Per Kit · Harness Included</div></div>
+          <button class="pc-cta" onclick="window.location='https://www.skid-sync.com/whatconnector6b'">Shop Bobcat <span>→</span></button>
+        </div>
+      </article>
+      <!-- U-400 -->
+      <article class="product-card reveal">
+        <div class="pc-head">
+          <div><div class="pc-sku">U-400</div><div class="pc-name">Universal Wireless Control</div></div>
+          <span class="pc-badge">Best Seller</span>
+        </div>
+        <div>
+          <div class="pc-stage">
+            <div class="sg"></div>
+            <img class="pc-photo" src="https://raw.githubusercontent.com/braydendorrity-del/skid-sync/main/assets/IMG_6398.jpg" alt="Skid Sync U-400 universal wireless control box" />
+            <div class="pc-scrim"></div>
+            <div class="pc-tag">U-400 · Kit</div>
+            <div class="pc-sn">CH · 064</div>
           </div>
           <ul class="pc-bullets">
             <li>4 independent wireless output functions</li>
@@ -954,30 +449,23 @@
           </ul>
         </div>
         <div class="pc-foot">
-          <div>
-            <div class="pc-price">$720</div>
-            <div class="pc-price-sub">Single Remote · Dual Remote $800</div>
-          </div>
-          <button class="pc-cta" onclick="window.location='https://www.skid-sync.com/attachment'">
-            Shop U-400 →
-          </button>
+          <div><div class="pc-price">$720</div><div class="pc-price-sub">Single Remote · Dual Remote $800</div></div>
+          <button class="pc-cta" onclick="window.location='https://www.skid-sync.com/attachment'">Shop U-400 <span>→</span></button>
         </div>
       </article>
-
+      <!-- U-600 -->
       <article class="product-card reveal">
+        <div class="pc-head">
+          <div><div class="pc-sku">U-600</div><div class="pc-name">Universal Wireless Control</div></div>
+          <span class="pc-badge">More Power</span>
+        </div>
         <div>
-          <div class="pc-top">
-            <div>
-              <div class="pc-sku">U-600</div>
-              <div class="pc-name">Universal Wireless Control</div>
-            </div>
-            <span class="pc-badge">More Power</span>
-          </div>
           <div class="pc-stage">
             <div class="sg"></div>
-            <img class="pc-photo" src="assets/product-u600-top.jpg" alt="Skid Sync U-600 universal wireless control box, top view" />
-            <div class="pc-stage-label">U-600 · Top</div>
-            <div class="pc-stage-sn">SN · 97003864</div>
+            <img class="pc-photo" src="https://raw.githubusercontent.com/braydendorrity-del/skid-sync/main/assets/IMG_5198.jpg" alt="Skid Sync U-600 universal wireless control box" />
+            <div class="pc-scrim"></div>
+            <div class="pc-tag">U-600 · Top</div>
+            <div class="pc-sn">SN · 97003864</div>
           </div>
           <ul class="pc-bullets">
             <li>6 independent wireless output functions</li>
@@ -988,35 +476,23 @@
           </ul>
         </div>
         <div class="pc-foot">
-          <div>
-            <div class="pc-price">$790</div>
-            <div class="pc-price-sub">Single Remote · Dual Remote $880</div>
-          </div>
-          <button class="pc-cta" onclick="window.location='https://www.skid-sync.com/attachment'">
-            Shop U-600 →
-          </button>
+          <div><div class="pc-price">$790</div><div class="pc-price-sub">Single Remote · Dual Remote $880</div></div>
+          <button class="pc-cta" onclick="window.location='https://www.skid-sync.com/attachment'">Shop U-600 <span>→</span></button>
         </div>
       </article>
     </div>
-
     <div class="harness-band reveal">
       <div class="harness-head">
         <h3>Attachment Harnesses</h3>
         <p>Plug-and-play harnesses sold individually for the attachments you actually run. Pick your box, pick your harness, go to work.</p>
       </div>
       <div class="harness-grid">
-        <div class="harness-item">Angle Broom</div>
-        <div class="harness-item">Harley Rake</div>
-        <div class="harness-item">Snow Plow</div>
-        <div class="harness-item">Snow V-Blade</div>
-        <div class="harness-item">Snowblower</div>
-        <div class="harness-item">Stump Grinder</div>
-        <div class="harness-item">Dozer Blade</div>
-        <div class="harness-item">Backhoe Attachment</div>
-        <div class="harness-item">Wheel Saw</div>
-        <div class="harness-item">Cold Planer</div>
-        <div class="harness-item">Soil Spreader</div>
-        <div class="harness-item">6-Func Grader</div>
+        <div class="harness-item">Angle Broom</div><div class="harness-item">Harley Rake</div>
+        <div class="harness-item">Snow Plow</div><div class="harness-item">Snow V-Blade</div>
+        <div class="harness-item">Snowblower</div><div class="harness-item">Stump Grinder</div>
+        <div class="harness-item">Dozer Blade</div><div class="harness-item">Backhoe Attachment</div>
+        <div class="harness-item">Wheel Saw</div><div class="harness-item">Cold Planer</div>
+        <div class="harness-item">Soil Spreader</div><div class="harness-item">6-Func Grader</div>
       </div>
     </div>
   </div>
@@ -1025,37 +501,25 @@
 <!-- HOW IT WORKS -->
 <section id="how">
   <div class="wrap">
-    <div class="sec-header">
-      <div>
-        <div class="sec-num">§ 03 · How It Works</div>
-        <h2 class="sec-title">Three Steps.<br/>No <span class="accent">Manual.</span></h2>
-      </div>
-      <p class="sec-lede">Mount the box. Connect the harness. Go to work. If you can plug in a trailer, you can install a Skid Sync.</p>
+    <div class="section-head">
+      <div><div class="section-num">§ 03 · How It Works</div><h2>Three Steps.<br/>No <span class="accent">Manual.</span></h2></div>
+      <p class="lede">Mount the box. Connect the harness. Go to work. If you can plug in a trailer, you can install a Skid Sync.</p>
     </div>
     <div class="steps" id="steps">
       <div class="step active" data-step="1">
         <div class="step-no">01</div>
-        <div>
-          <div class="step-title">Mount It</div>
-          <p class="step-desc">Clamp the U-400 or U-600 onto your attachment frame. No cab wiring, no drilling, no harness routing through boom arms.</p>
-        </div>
-        <div class="step-foot"><span class="sk">Under 2 min</span><span class="step-dot"></span></div>
+        <div><div class="step-title">Mount It</div><p class="step-desc">Clamp the U-400 or U-600 onto your attachment frame. No cab wiring, no drilling, no harness routing through boom arms.</p></div>
+        <div class="step-meta"><span class="k">Under 2 min</span><span class="step-led"></span></div>
       </div>
       <div class="step" data-step="2">
         <div class="step-no">02</div>
-        <div>
-          <div class="step-title">Connect It</div>
-          <p class="step-desc">Plug the attachment harness into the box. Deutsch, Delphi, DIN — we stock them all. Pair the remote with one button.</p>
-        </div>
-        <div class="step-foot"><span class="sk">Under 1 min</span><span class="step-dot"></span></div>
+        <div><div class="step-title">Connect It</div><p class="step-desc">Plug the attachment harness into the box. Deutsch, Delphi, DIN — we stock them all. Pair the handheld remote with one button.</p></div>
+        <div class="step-meta"><span class="k">Under 1 min</span><span class="step-led"></span></div>
       </div>
       <div class="step" data-step="3">
         <div class="step-no">03</div>
-        <div>
-          <div class="step-title">Run It</div>
-          <p class="step-desc">Operate your attachment wirelessly from inside the cab. Swap to the next attachment in minutes — not an afternoon.</p>
-        </div>
-        <div class="step-foot"><span class="sk">Go to work</span><span class="step-dot"></span></div>
+        <div><div class="step-title">Run It</div><p class="step-desc">Operate your attachment wirelessly from inside the cab. Swap to the next attachment in minutes — not an afternoon.</p></div>
+        <div class="step-meta"><span class="k">Go to work</span><span class="step-led"></span></div>
       </div>
     </div>
   </div>
@@ -1064,65 +528,37 @@
 <!-- WHY WINS -->
 <section id="wins">
   <div class="wrap">
-    <div class="sec-header">
-      <div>
-        <div class="sec-num">§ 04 · Why Skid Sync Wins</div>
-        <h2 class="sec-title">Built <span class="accent">Different.</span></h2>
-      </div>
-      <p class="sec-lede">Every box is designed, assembled, potted, and tested in Spanish Fork, Utah. By mechanics. For mechanics. Warrantied by the people who pick up the phone.</p>
+    <div class="section-head">
+      <div><div class="section-num">§ 04 · Why Skid Sync Wins</div><h2>Built <span class="accent">Different.</span></h2></div>
+      <p class="lede">Every box is designed, assembled, potted, and tested in Spanish Fork, Utah. By mechanics. For mechanics. Warrantied by the people who pick up the phone.</p>
     </div>
-
     <div class="diffs">
       <div class="diff reveal">
-        <div class="diff-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2v4M12 18v4M4 12H2M22 12h-2M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/><circle cx="12" cy="12" r="4"/></svg>
-        </div>
+        <div class="diff-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4 12H2M22 12h-2M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/><circle cx="12" cy="12" r="4"/></svg></div>
         <h4>Universal Compatibility</h4>
         <p>One system works with any machine brand and any attachment type. No brand lock-in. No compatibility charts to decode.</p>
         <span class="kicker">Any machine. Any attachment.</span>
       </div>
       <div class="diff reveal">
-        <div class="diff-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg>
-        </div>
+        <div class="diff-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg></div>
         <h4>Wireless Freedom</h4>
         <p>No running cables through cab glass. No harness up the boom arm. 100% wireless signal — industrial grade, not consumer.</p>
         <span class="kicker">Zero wires. Zero headaches.</span>
       </div>
       <div class="diff reveal">
-        <div class="diff-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l8 3v7c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V5l8-3z"/></svg>
-        </div>
+        <div class="diff-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 3v7c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V5l8-3z"/></svg></div>
         <h4>Built to Last</h4>
         <p>Epoxy-potted electronics. Sealed enclosure. Lithium battery. Fuse-protected outputs. Built to survive the same abuse as the machines.</p>
         <span class="kicker">Weatherproof. Field-proven.</span>
       </div>
     </div>
-
     <div class="vs-table reveal">
-      <div class="vs-head feat">Feature</div>
-      <div class="vs-head us">Skid Sync</div>
-      <div class="vs-head them">Wired Harness</div>
-
-      <div class="vs-cell feat">Universal compatibility</div>
-      <div class="vs-cell yes">✓ Yes</div>
-      <div class="vs-cell no">✗ Machine-specific</div>
-
-      <div class="vs-cell feat">No machine wiring required</div>
-      <div class="vs-cell yes">✓ Yes</div>
-      <div class="vs-cell no">✗ Required</div>
-
-      <div class="vs-cell feat">Weatherproof sealed</div>
-      <div class="vs-cell yes">✓ Yes</div>
-      <div class="vs-cell no">✗ Exposed connectors</div>
-
-      <div class="vs-cell feat">Install time</div>
-      <div class="vs-cell yes">Minutes</div>
-      <div class="vs-cell no">30–60 min</div>
-
-      <div class="vs-cell feat">Cost vs. OEM kit</div>
-      <div class="vs-cell yes">From $720</div>
-      <div class="vs-cell no">$6,000+</div>
+      <div class="vs-head feat">Feature</div><div class="vs-head us">Skid Sync</div><div class="vs-head them">Wired Harness</div>
+      <div class="vs-cell feat">Universal compatibility</div><div class="vs-cell yes">✓ Yes</div><div class="vs-cell no">✗ Machine-specific</div>
+      <div class="vs-cell feat">No machine wiring required</div><div class="vs-cell yes">✓ Yes</div><div class="vs-cell no">✗ Required</div>
+      <div class="vs-cell feat">Weatherproof sealed</div><div class="vs-cell yes">✓ Yes</div><div class="vs-cell no">✗ Exposed connectors</div>
+      <div class="vs-cell feat">Install time</div><div class="vs-cell yes">Minutes</div><div class="vs-cell no">30–60 min</div>
+      <div class="vs-cell feat">Cost vs. OEM kit</div><div class="vs-cell yes">From $720</div><div class="vs-cell no">$6,000+</div>
     </div>
   </div>
 </section>
@@ -1130,14 +566,10 @@
 <!-- WHO IT'S FOR -->
 <section id="who">
   <div class="wrap">
-    <div class="sec-header">
-      <div>
-        <div class="sec-num">§ 05 · Who It's For</div>
-        <h2 class="sec-title">Built For The<br/>People Who <span class="accent">Get Work Done.</span></h2>
-      </div>
-      <p class="sec-lede">Dealers stocking a better solution. OEMs adding wireless control to their lineup. Operators tired of swapping harnesses mid-job.</p>
+    <div class="section-head">
+      <div><div class="section-num">§ 05 · Who It's For</div><h2>Built For The<br/>People Who <span class="accent">Get Work Done.</span></h2></div>
+      <p class="lede">Dealers stocking a better solution. OEMs adding wireless control to their lineup. Operators tired of swapping harnesses mid-job.</p>
     </div>
-
     <div class="audience">
       <div class="aud-card reveal">
         <div class="aud-sub">B2B Channel</div>
@@ -1146,40 +578,27 @@
         <a href="mailto:info@skid-sync.com" class="aud-link">Become a Dealer →</a>
       </div>
       <div class="aud-card reveal">
-        <div class="aud-sub">Integration Partner</div>
-        <div class="aud-title">OEMs &amp; Manufacturers</div>
-        <div class="aud-desc">Add wireless control to your attachment lineup. No machine wiring required from your customer — Skid Sync integrates clean.</div>
-        <a href="mailto:info@skid-sync.com" class="aud-link">Partner With Us →</a>
-      </div>
-      <div class="aud-card reveal">
         <div class="aud-sub">End User</div>
         <div class="aud-title">Operators &amp; Contractors</div>
         <div class="aud-desc">Work more. Wrench less. One box runs your whole attachment fleet — no more diagnosing broken connectors mid-job.</div>
         <a href="https://www.skid-sync.com/attachment" class="aud-link">Shop Now →</a>
       </div>
     </div>
-
     <div class="compat">
       <div class="compat-panel reveal">
         <h4>Compatible Machine Brands</h4>
         <div class="compat-brands">
-          <div class="b">Bobcat</div>
-          <div class="b">Caterpillar</div>
-          <div class="b">John Deere</div>
-          <div class="b">Case</div>
-          <div class="b">New Holland</div>
-          <div class="b">Kubota</div>
-          <div class="b">Takeuchi</div>
-          <div class="b">And more</div>
+          <div class="b">Bobcat</div><div class="b">Caterpillar</div>
+          <div class="b">John Deere</div><div class="b">Case</div>
+          <div class="b">New Holland</div><div class="b">Kubota</div>
+          <div class="b">Takeuchi</div><div class="b">And more</div>
         </div>
       </div>
       <div class="compat-panel reveal">
         <h4>Works On</h4>
         <div class="compat-machines">
-          <div class="m">Skid Steers</div>
-          <div class="m">Track Loaders</div>
-          <div class="m">Compact Tractors</div>
-          <div class="m">Telehandlers</div>
+          <div class="m">Skid Steers</div><div class="m">Track Loaders</div>
+          <div class="m">Compact Tractors</div><div class="m">Telehandlers</div>
         </div>
       </div>
     </div>
@@ -1189,15 +608,11 @@
 <!-- ABOUT -->
 <section id="about">
   <div class="wrap">
-    <div class="sec-header">
-      <div>
-        <div class="sec-num">§ 06 · Our Story</div>
-        <h2 class="sec-title">Built In<br/><span class="accent">Utah.</span> Built For<br/>The World.</h2>
-      </div>
-      <p class="sec-lede">Skid Sync was born from frustration on the job site. The options online were either junk or way too expensive — so we built what we wanted. Every box we ship is built, tested, and supported by the same people who run heavy equipment.</p>
+    <div class="section-head">
+      <div><div class="section-num">§ 06 · Our Story</div><h2>Built In<br/><span class="accent">Utah.</span> Built For<br/>The World.</h2></div>
+      <p class="lede">Skid Sync was born from frustration on the job site. The options online were either junk or way too expensive — so we built what we wanted. Every box we ship is built, tested, and supported by the same people who run heavy equipment.</p>
     </div>
-
-    <div class="about-grid reveal">
+    <div class="about reveal">
       <div class="about-copy">
         <p>Operators were wasting hours fighting wiring harnesses that didn't fit, broke after a week, or required running cables through cab glass. <strong>We built a wireless control system that eliminates the problem entirely</strong> — mount it to the attachment, pair the remote, go to work.</p>
         <p>We're a small team in Pleasant Grove, Utah. We come from equipment service — we've diagnosed the failures, we've dealt with the incompatible connectors. Everything we ship is built and tested by the same people who understand what it goes through in the field.</p>
@@ -1208,30 +623,18 @@
         </div>
       </div>
       <div class="team">
-        <div class="team-header">// Meet The Founders</div>
+        <div class="team-title">// Meet The Founders</div>
         <div class="team-card">
           <div class="team-avatar">B</div>
-          <div>
-            <div class="team-name">Brady Wood</div>
-            <div class="team-role">CEO &amp; Co-Founder</div>
-            <div class="team-bio">Equipment industry veteran. Co-founder of South Valley Equipment in Utah. The vision behind Skid Sync — saw the harness compatibility problem at scale and decided to solve it properly.</div>
-          </div>
+          <div><div class="team-name">Brady Wood</div><div class="team-role">CEO &amp; Co-Founder</div><div class="team-bio">Equipment industry veteran with decades in the field. The vision behind Skid Sync — saw the harness compatibility problem at scale and decided to solve it properly.</div></div>
         </div>
         <div class="team-card">
           <div class="team-avatar">M</div>
-          <div>
-            <div class="team-name">Mike Dorrity</div>
-            <div class="team-role">Operations &amp; Co-Founder</div>
-            <div class="team-bio">Field mechanic turned systems builder. Runs operations at SVE and drives Skid Sync product development, dealer outreach, and day-to-day execution. If it ships, Mike built the system behind it.</div>
-          </div>
+          <div><div class="team-name">Mike Dorrity</div><div class="team-role">Operations &amp; Co-Founder</div><div class="team-bio">Field mechanic turned systems builder. Drives Skid Sync product development, dealer outreach, and day-to-day execution. If it ships, Mike built the system behind it.</div></div>
         </div>
         <div class="team-card">
           <div class="team-avatar">J</div>
-          <div>
-            <div class="team-name">Joel Mena</div>
-            <div class="team-role">Manufacturing &amp; Co-Founder</div>
-            <div class="team-bio">The hands behind every box. Joel owns the build process — from incoming board rework to headlight load testing. Nothing ships without passing his bench.</div>
-          </div>
+          <div><div class="team-name">Joel Mena</div><div class="team-role">Manufacturing &amp; Co-Founder</div><div class="team-bio">The hands behind every box. Joel owns the build process — from incoming board rework to headlight load testing. Nothing ships without passing his bench.</div></div>
         </div>
       </div>
     </div>
@@ -1246,11 +649,11 @@
       <div class="fc-tagline">Built In Utah · Built To Outperform</div>
     </div>
     <form class="fc-form" id="signupForm" onsubmit="return false">
-      <div class="fc-row">
+      <div class="row">
         <input type="email" id="emailInput" placeholder="you@worksite.com" autocomplete="email" required />
         <button type="submit">Notify Me</button>
       </div>
-      <div class="fc-note" id="formNote">Product drops + install tips. One email a month. Never shared.</div>
+      <div class="note" id="formNote">Product drops + install tips. One email a month. Never shared.</div>
       <div class="fc-actions">
         <a href="https://www.skid-sync.com/attachment" class="btn btn-primary">Shop Now</a>
         <a href="mailto:info@skid-sync.com" class="btn btn-outline">Find a Dealer</a>
@@ -1264,39 +667,35 @@
   <div class="wrap">
     <div class="footer-grid">
       <div class="footer-col">
-        <a href="#top" class="logo">
-          <span class="logo-mark">SS</span>
-          <span class="logo-name"><span class="s1">SKID</span><span class="s2">SYNC</span></span>
-        </a>
+        <a href="#top" class="logo"><img src="https://raw.githubusercontent.com/braydendorrity-del/skid-sync/main/assets/Gemini_Generated_Image_blp5oblp5oblp5ob%20(2)%20(1).png" alt="Skid Sync" /></a>
         <p class="footer-brand">Universal wireless control systems for skid steers, track loaders, compact tractors &amp; telehandlers. Designed, built, and supported in Pleasant Grove, Utah.</p>
         <div class="footer-tagline">Built In <span>Utah.</span><br/>Built To <span>Outperform.</span></div>
       </div>
       <div class="footer-col">
         <h5>Shop</h5>
-        <a href="#products">U-400</a>
-        <a href="#products">U-600</a>
-        <a href="#products">Harnesses</a>
-        <a href="#products">Accessories</a>
+        <a href="https://www.skid-sync.com/whatconnector6b">B-600 Bobcat</a>
+        <a href="https://www.skid-sync.com/attachment">U-400</a>
+        <a href="https://www.skid-sync.com/attachment">U-600</a>
+        <a href="https://www.skid-sync.com/shop/attachment-harnesses">Harnesses</a>
+        <a href="https://www.skid-sync.com/shop/accessories">Accessories</a>
       </div>
       <div class="footer-col">
         <h5>Support</h5>
-        <a href="#">Install Guides</a>
-        <a href="#">Troubleshooting</a>
-        <a href="#">Warranty</a>
-        <a href="#">Contact</a>
+        <a href="https://www.skid-sync.com/installation-guide">Install Guides</a>
+        <a href="https://www.skid-sync.com/faqs-1">Troubleshooting</a>
+        <a href="https://www.skid-sync.com/return-policy">Warranty</a>
+        <a href="https://www.skid-sync.com/contact">Contact</a>
       </div>
       <div class="footer-col">
         <h5>Company</h5>
-        <a href="#about">About</a>
-        <a href="#dealers">Dealers</a>
-        <a href="#oem">OEM Partners</a>
-        <a href="#">Press</a>
+        <a href="https://www.skid-sync.com/about-us">About</a>
+        <a href="mailto:info@skid-sync.com">Dealers</a>
       </div>
       <div class="footer-col">
         <h5>Contact</h5>
         <a href="mailto:info@skid-sync.com">info@skid-sync.com</a>
         <a href="tel:8014204851">801-420-4851</a>
-        <a href="#">Pleasant Grove, UT</a>
+        <a href="https://www.skid-sync.com/contact">Pleasant Grove, UT</a>
       </div>
     </div>
     <div class="footer-bottom">
@@ -1309,11 +708,11 @@
 <script>
   // Scrollspy
   const links = document.querySelectorAll('[data-link]');
-  const targets = [...links].map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  const sections = [...links].map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
   function spy() {
-    const y = window.scrollY + 120;
+    const y = window.scrollY + 140;
     let idx = -1;
-    targets.forEach((s, i) => { if (s.offsetTop <= y) idx = i; });
+    sections.forEach((s, i) => { if (s.offsetTop <= y) idx = i; });
     links.forEach((l, i) => l.classList.toggle('active', i === idx));
   }
   window.addEventListener('scroll', spy, { passive: true }); spy();
@@ -1322,7 +721,7 @@
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-  document.querySelectorAll('section, .product-card, .step, .diff, .aud-card, .ps, .about-grid, .harness-band, .vs-table, .compat-panel').forEach(el => {
+  document.querySelectorAll('section, .product-card, .step, .diff, .aud-card, .ps, .about, .harness-band, .vs-table, .compat-panel').forEach(el => {
     el.classList.add('reveal'); io.observe(el);
   });
 
@@ -1343,25 +742,21 @@
   const note = document.getElementById('formNote');
   form.addEventListener('submit', () => {
     const v = document.getElementById('emailInput').value.trim();
-    if (!/\S+@\S+\.\S+/.test(v)) { note.textContent = 'Enter a valid email.'; note.className = 'fc-note'; return; }
+    if (!/\S+@\S+\.\S+/.test(v)) { note.textContent = 'Enter a valid email.'; note.className = 'note'; return; }
     note.textContent = '✓ You\'re on the list. Updates incoming.';
-    note.className = 'fc-note ok';
+    note.className = 'note ok';
     document.getElementById('emailInput').value = '';
   });
 
-  // Subtle hero parallax on mouse move (desktop only)
+  // Hero parallax on mouse move (desktop only)
   const heroRight = document.querySelector('.hero-right');
   if (heroRight && window.matchMedia('(hover: hover)').matches) {
     document.querySelector('.hero').addEventListener('mousemove', (e) => {
       const rect = heroRight.getBoundingClientRect();
-      const cx = rect.left + rect.width / 2;
-      const cy = rect.top + rect.height / 2;
-      const dx = (e.clientX - cx) / rect.width;
-      const dy = (e.clientY - cy) / rect.height;
-      const stage = document.querySelector('.product-stage');
-      if (stage) stage.style.transform = `translate(calc(-50% + ${dx * 8}px), calc(-52% + ${dy * 8}px))`;
-      const radial = document.querySelector('.stage-radial');
-      if (radial) radial.style.background = `radial-gradient(ellipse at ${50 + dx * 15}% ${50 + dy * 15}%, rgba(57,255,20,0.14), transparent 60%)`;
+      const dx = (e.clientX - (rect.left + rect.width / 2)) / rect.width;
+      const dy = (e.clientY - (rect.top + rect.height / 2)) / rect.height;
+      const photo = document.querySelector('.hero-photo');
+      if (photo) photo.style.transform = `translate(calc(-50% + ${dx * 10}px), calc(-50% + ${dy * 10}px))`;
     });
   }
 </script>
