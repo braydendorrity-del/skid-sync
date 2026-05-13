@@ -88,14 +88,14 @@
   .orbit-dot { position: absolute; top: -4px; left: 50%; width: 8px; height: 8px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 10px var(--lime); transform: translateX(-50%); }
 
   .hero-photo { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); width: min(90%, 720px); aspect-ratio: 4/3; z-index: 4; display: grid; place-items: center; transition: transform .1s ease-out; }
-  .hero-photo img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 30px 50px rgba(0,0,0,0.8)) drop-shadow(0 0 40px rgba(57,255,20,0.22)); }
+  .hero-photo img { width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; filter: drop-shadow(0 30px 50px rgba(0,0,0,0.8)) drop-shadow(0 0 40px rgba(57,255,20,0.22)); }
   .ph-label { position: absolute; left: 0; bottom: -8px; font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 0.16em; color: var(--lime); text-shadow: 0 0 18px rgba(57,255,20,0.55); z-index: 2; }
   .ph-sn { position: absolute; right: 0; top: -4px; font-size: 10px; letter-spacing: 0.3em; color: rgba(255,255,255,0.55); z-index: 2; }
   .hero-callouts { position: absolute; inset: 0; pointer-events: none; z-index: 5; }
   .callout { position: absolute; font-size: 10px; font-weight: 700; color: var(--gray4); letter-spacing: 0.18em; text-transform: uppercase; display: flex; align-items: center; gap: 10px; }
   .callout .line { width: 44px; height: 1px; background: var(--lime); }
   .callout.c1 { top: 8%; left: 2%; }
-  .callout.c2 { bottom: 28%; right: 2%; flex-direction: row-reverse; }
+  .callout.c2 { bottom: 6%; right: 2%; flex-direction: row-reverse; }
   .callout.c3 { bottom: 8%; left: 2%; }
 
   /* SECTIONS */
@@ -139,7 +139,7 @@
   .pc-name { font-size: 12px; font-weight: 700; color: #fff; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 24px; }
   .pc-stage { position: relative; aspect-ratio: 16/10; border-radius: 10px; overflow: hidden; background: radial-gradient(ellipse at 55% 55%, rgba(57,255,20,0.12), transparent 60%), linear-gradient(135deg, #1c1c1c 0%, #0e0e0e 100%); border: 1px solid var(--line); display: grid; place-items: center; margin-bottom: 26px; }
   .pc-stage .sg { position: absolute; inset: 0; background-image: linear-gradient(rgba(57,255,20,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(57,255,20,0.05) 1px, transparent 1px); background-size: 28px 28px; }
-  .pc-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; padding: 18px; filter: drop-shadow(0 20px 30px rgba(0,0,0,0.7)) drop-shadow(0 0 25px rgba(57,255,20,0.18)); z-index: 1; }
+  .pc-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; padding: 18px; mix-blend-mode: multiply; filter: drop-shadow(0 20px 30px rgba(0,0,0,0.7)) drop-shadow(0 0 25px rgba(57,255,20,0.18)); z-index: 1; }
   .pc-scrim { position: absolute; inset: 0; z-index: 0; pointer-events: none; background: radial-gradient(ellipse at 50% 50%, transparent 50%, rgba(13,13,13,0.4) 85%, rgba(13,13,13,0.85) 100%); }
   .pc-tag { position: absolute; top: 12px; left: 14px; z-index: 2; font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 0.12em; color: var(--lime); text-shadow: 0 0 14px rgba(57,255,20,0.5); }
   .pc-sn { position: absolute; top: 14px; right: 14px; z-index: 2; font-size: 8px; letter-spacing: 0.28em; color: rgba(255,255,255,0.55); }
