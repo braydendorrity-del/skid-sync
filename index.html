@@ -137,9 +137,9 @@
   .pc-sku { font-family: 'Bebas Neue', sans-serif; font-size: 44px; color: var(--lime); letter-spacing: 0.05em; line-height: 1; }
   .pc-badge { font-size: 10px; font-weight: 700; color: var(--lime); letter-spacing: 0.2em; text-transform: uppercase; border: 1px solid var(--lime-dim); padding: 5px 10px; border-radius: 4px; background: var(--lime-soft); white-space: nowrap; }
   .pc-name { font-size: 12px; font-weight: 700; color: #fff; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 24px; }
-  .pc-stage { position: relative; aspect-ratio: 16/10; border-radius: 10px; overflow: hidden; background: #111; border: 1px solid var(--line); display: grid; place-items: center; margin-bottom: 26px; }
+  .pc-stage { position: relative; aspect-ratio: 16/10; border-radius: 10px; overflow: hidden; background: #f0f0f0; border: 1px solid var(--line); display: grid; place-items: center; margin-bottom: 26px; }
   .pc-stage .sg { position: absolute; inset: 0; background-image: linear-gradient(rgba(57,255,20,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(57,255,20,0.05) 1px, transparent 1px); background-size: 28px 28px; }
-  .pc-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; padding: 18px; mix-blend-mode: multiply; filter: drop-shadow(0 20px 30px rgba(0,0,0,0.7)); z-index: 1; }
+  .pc-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; padding: 18px; filter: drop-shadow(0 20px 30px rgba(0,0,0,0.4)); z-index: 1; }
   .pc-scrim { position: absolute; inset: 0; z-index: 0; pointer-events: none; background: radial-gradient(ellipse at 50% 50%, transparent 50%, rgba(13,13,13,0.4) 85%, rgba(13,13,13,0.85) 100%); }
   .pc-tag { position: absolute; top: 12px; left: 14px; z-index: 2; font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 0.12em; color: var(--lime); text-shadow: 0 0 14px rgba(57,255,20,0.5); }
   .pc-sn { position: absolute; top: 14px; right: 14px; z-index: 2; font-size: 8px; letter-spacing: 0.28em; color: rgba(255,255,255,0.55); }
@@ -431,10 +431,10 @@
       <div style="position:relative;">
         <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(57,255,20,0.12),transparent 65%);pointer-events:none;z-index:0;"></div>
         <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(57,255,20,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(57,255,20,0.05) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;border-radius:14px;"></div>
-        <div style="position:relative;z-index:1;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#0a0a0a;padding:40px;">
+        <div style="position:relative;z-index:1;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#f0f0f0;padding:40px;">
           <img src="https://raw.githubusercontent.com/braydendorrity-del/skid-sync/main/assets/IMG_5319.jpg"
                alt="Skid Sync B-600 Bobcat wireless controller"
-               style="width:100%;height:auto;object-fit:contain;mix-blend-mode:multiply;filter:drop-shadow(0 20px 40px rgba(0,0,0,0.8)) drop-shadow(0 0 30px rgba(57,255,20,0.2));" />
+               style="width:100%;height:auto;object-fit:contain;filter:drop-shadow(0 20px 40px rgba(0,0,0,0.3));" />
         </div>
         <!-- feature callouts -->
         <div style="position:absolute;top:16px;right:-10px;z-index:2;background:var(--charcoal);border:1px solid var(--lime-dim);border-radius:8px;padding:10px 14px;font-size:11px;font-weight:700;color:var(--lime);letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;">CAN-Bus Ready</div>
@@ -469,12 +469,12 @@
           <span class="pc-badge">New</span>
         </div>
         <div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;"><span style="font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:0.14em;color:var(--lime);">B-600 · Receiver</span><span style="font-size:9px;letter-spacing:0.28em;color:var(--gray3);">SN · 97001</span></div>
           <div class="pc-stage">
             <div class="sg"></div>
             <img class="pc-photo" src="https://raw.githubusercontent.com/braydendorrity-del/skid-sync/main/assets/IMG_5319.jpg" alt="Skid Sync B-600 Bobcat wireless attachment controller" />
             <div class="pc-scrim"></div>
-            <div class="pc-tag">B-600 · Receiver</div>
-            <div class="pc-sn">SN · 97001</div>
+
           </div>
           <ul class="pc-bullets">
             <li>Use your Bobcat with any attachment — no ACD device needed</li>
@@ -496,12 +496,12 @@
           <span class="pc-badge">Best Seller</span>
         </div>
         <div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;"><span style="font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:0.14em;color:var(--lime);">U-400 · Kit</span><span style="font-size:9px;letter-spacing:0.28em;color:var(--gray3);">CH · 064</span></div>
           <div class="pc-stage">
             <div class="sg"></div>
             <img class="pc-photo" src="https://raw.githubusercontent.com/braydendorrity-del/skid-sync/main/assets/IMG_6398.jpg" alt="Skid Sync U-400 universal wireless control box" />
             <div class="pc-scrim"></div>
-            <div class="pc-tag">U-400 · Kit</div>
-            <div class="pc-sn">CH · 064</div>
+
           </div>
           <ul class="pc-bullets">
             <li>4 independent wireless output functions</li>
@@ -523,12 +523,12 @@
           <span class="pc-badge">More Power</span>
         </div>
         <div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;"><span style="font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:0.14em;color:var(--lime);">U-600 · Top</span><span style="font-size:9px;letter-spacing:0.28em;color:var(--gray3);">SN · 97003864</span></div>
           <div class="pc-stage">
             <div class="sg"></div>
             <img class="pc-photo" src="https://raw.githubusercontent.com/braydendorrity-del/skid-sync/main/assets/IMG_5198.jpg" alt="Skid Sync U-600 universal wireless control box" />
             <div class="pc-scrim"></div>
-            <div class="pc-tag">U-600 · Top</div>
-            <div class="pc-sn">SN · 97003864</div>
+
           </div>
           <ul class="pc-bullets">
             <li>6 independent wireless output functions</li>
